@@ -1,0 +1,10 @@
+<form class="Box" action="index.html" method="POST">
+    <h1 translate>Login</h1>
+
+    <div class="alert alert-danger" *ngIf='invalidLogin'>{{errorMessage}}</div>
+
+    <input type = "text" name="username" [(ngModel)]="username" placeholder="Email">
+    <input type = "password" name="password" [(ngModel)]="password" placeholder="Password">
+
+    <button class="submit" (click)=handleJWTAuthLogin() translate>Login</button>
+</form>

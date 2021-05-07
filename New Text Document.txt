@@ -1,0 +1,25 @@
+docker pull mysql/mysql-server:latest // da dobavimo mysql server sa dockera
+
+#Pokrecemo u containeru
+docker run --name=[container_name] -d mysql/mysql-server:latest
+
+#Komanda koja sluzi za pokretanje mysql i u ovom slucaju trebamo naci u docker konzoli GENERATED PASSWORD i unesemo je
+docker exec -it [container_name] mysql -uroot -p
+
+#Sledeca komanda nam sluzi da generated password zamenimo za nasu sifru
+ALTER USER 'root'@'localhost' IDENTIFIED BY '[newpassword]';
+
+#Posto server u glavnom nece imati konfiguraciju mozemo to sami odraditi tako sto cemo napraviti svoj folder
+#I u njemu .cnf file gde cemo sa [mysqld] da definisemo properies kao sto je recimo binding address ili max connections
+#Kada uradimo to moramo opet pokrenuti docker sa kombinacijom komandi (pre toga moramo zaustaviti i remove stari container)
+docker run 
+--detach 
+--name=[container_name]
+--env="MYSQL_ROOT_PASSWORD=[my_password]" 
+--publish 6603:3306 
+--volume=/root/docker/[container_name]/conf.d:/etc/mysql/conf.d 
+mysql
+
+
+*******************
+docker run --detach --name=mysql-container --env="MYSQL_ROOT_PASSWORD=root" --publish 3306:3306 --volume=/root/docker/mysql-container/conf.d:/etc/mysql/conf.d --volume=/storage/docker/mysql-data:/var/lib/mysql mysql

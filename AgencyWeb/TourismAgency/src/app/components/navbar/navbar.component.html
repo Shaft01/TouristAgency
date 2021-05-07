@@ -1,0 +1,47 @@
+<!-- 
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" >
+    <a class="navbar-brand" routerLink=""><img src="./assets/img/logo.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Pocetna</a>
+        </li>
+        <li class="nav-item" *rbShow="['admin', 'regular']">
+          <a class="nav-link" routerLink="/showSong" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Pesme</a>
+        </li>
+        <li class="nav-item" *rbShow="['admin', 'regular']">
+          <a class="nav-link" routerLink="/showCuriosity" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Zanimljivosti</a>
+        </li>
+        <li class="nav-item" *rbShow="['admin', 'regular']">
+          <a class="nav-link" routerLink="/showFestivals" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Festivali</a>
+        </li>
+        <li class="nav-item dropdown" *rbShow="['admin', 'regular']">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Kreiraj
+          </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="/countries" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Pesmu</a>
+              <a class="dropdown-item" routerLink="/createFestival" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Festival</a>
+              <a class="dropdown-item" routerLink="/createCuriosity" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Zanimljivost</a>
+            </div>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn()">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn()">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Registracija</a>
+          </li>
+             <li class="nav-item" *ngIf="isLoggedIn()">
+                <a class="nav-link" routerLink="/forum" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Forum</a>
+              </li>
+          <li class="nav-item" *ngIf="isLoggedIn()">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li> 
+        </ul>
+      </div>
+    </nav>
+   -->
