@@ -21,7 +21,6 @@ export class HttpIntercepterBasicAuthService implements HttpInterceptor{
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>>{
-    console.log("OVDE");
     let basicAuthHeaderString = this.basicAuthenticationService.getAuthenticatedToken();
     let username = this.basicAuthenticationService.getAuthenticatedUser();
 
@@ -62,7 +61,6 @@ export class HttpIntercepterBasicAuthService implements HttpInterceptor{
 
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
-      console.log("OVDE1");
       return this.basicAuthenticationService.refreshToken().pipe(
         switchMap((token: any) => {
           this.isRefreshing = false;

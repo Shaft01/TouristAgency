@@ -19,6 +19,9 @@ import { Country } from "../model/country";
     getCountryById(id:number){
         return this.http.get<Country>(`${JPA_API_URL}/country/${id}`);
     }
+    // getAllCountriesApi(){
+    //     return this.http.get<Country[]>(`https://restcountries.eu/rest/v2/all`);
+    // }
 
     
 }

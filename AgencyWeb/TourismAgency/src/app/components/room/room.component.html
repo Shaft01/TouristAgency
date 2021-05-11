@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title" translate>Room</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #roomForm="ngForm">
+        <fieldset class="form-group"> 
+            <label >Room type</label> 
+           <input type="text" name="type" class="form-control" [(ngModel)]="room.type" required>
+        </fieldset>
+
+    </form>
+
+  </div>
+
+  <!-- <div style="width: 90%; margin-left: 5%;" *ngIf='invalidForm' class="alert alert-danger" translate>An error occured!<div translate>Please contact your system administrator!</div></div> -->
+
+  <div class="modal-footer">
+    <button type="button" [disabled] = "roomForm.invalid" (click)="saveRoom()" id="closeModal" class="btn btn-primary" translate>Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" translate>Close</button>
+  </div>

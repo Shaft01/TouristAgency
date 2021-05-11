@@ -37,7 +37,9 @@ body{
     border-radius: 24px;
     transition: 0.25s;
 }
-
+label {
+    color:white;
+}
 .Box input[type = "text"]:focus,.Box input[ type = "Password"]:focus{
     width: 280px;
     border-color: #47bac1;

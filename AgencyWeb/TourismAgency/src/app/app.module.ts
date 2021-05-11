@@ -2,7 +2,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
@@ -17,6 +16,11 @@ import { CitiesComponent } from './components/cities/cities.component';
 import { ListCitiesComponent } from './components/list-cities/list-cities.component';
 import { HotelComponent } from './components/hotel/hotel.component';
 import { ListHotelsComponent } from './components/list-hotels/list-hotels.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RoomComponent } from './components/room/room.component';
+import { ListRoomsComponent } from './components/list-rooms/list-rooms.component';
+import { HotelRoomComponent } from './components/hotel-room/hotel-room.component';
+import { ListHotelRoomsComponent } from './components/list-hotel-rooms/list-hotel-rooms.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { ListHotelsComponent } from './components/list-hotels/list-hotels.compon
     CitiesComponent,
     ListCitiesComponent,
     HotelComponent,
-    ListHotelsComponent
+    ListHotelsComponent,
+    RoomComponent,
+    ListRoomsComponent,
+    HotelRoomComponent,
+    ListHotelRoomsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +46,8 @@ import { ListHotelsComponent } from './components/list-hotels/list-hotels.compon
     FormsModule,
     HttpClientModule,
     NgbModule,
+    
+    BrowserAnimationsModule,
     
   ],
   providers: [{

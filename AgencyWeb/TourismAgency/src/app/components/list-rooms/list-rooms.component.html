@@ -1,0 +1,17 @@
+<div class="toolbar">
+    <button (click)="createRoom()" class="btn btn-outline-toolbar">Create room</button>
+</div>
+<table class="table table-striped table-dark">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor=" let room of rooms">
+            <td>{{room.id}}</td>
+            <td>{{room.type}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h4 class="modal-title" translate>Hotel Room</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #hotelRoomForm="ngForm">
+       
+        <fieldset class="form-group"> 
+            <label >Room</label> 
+            <select class="form-control" id="roomId" #roomId="ngModel" [(ngModel)]="hotelRoom.roomId" name="roomId" required>
+                <option [ngValue]="room.id" *ngFor="let room of rooms">{{room.type}}</option>
+            </select>
+           
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Hotel</label>
+            <select class="form-control" id="hotelId" #hotelId="ngModel" [(ngModel)]="hotelRoom.hotelId" name="hotelId" required>
+                <option [ngValue]="hotel.id" *ngFor="let hotel of hotels">{{hotel.name}}</option>
+            </select>
+        </fieldset>
+        <fieldset class="form-group"> 
+            <input type=number step=0.01 name="price" class="form-control" [(ngModel)]="hotelRoom.pricePerDay" required>
+            </fieldset>
+    </form>
+
+  </div>
+
+  <!-- <div style="width: 90%; margin-left: 5%;" *ngIf='invalidForm' class="alert alert-danger" translate>An error occured!<div translate>Please contact your system administrator!</div></div> -->
+
+  <div class="modal-footer">
+    <button type="button" [disabled] = "hotelRoomForm.invalid" (click)="saveHotelRoom()" id="closeModal" class="btn btn-primary" translate>Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" translate>Close</button>
+  </div>

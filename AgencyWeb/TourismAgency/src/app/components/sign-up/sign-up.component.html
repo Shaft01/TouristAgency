@@ -1,14 +1,14 @@
 <form class="Box" #userForm="ngForm">
     <fieldset class="form-group">
         <label translate>Email</label>
-          <input type = "text" #username="ngModel" [(ngModel)]="user.username" class="form-control" name="username" required>
+          <input  type = "text" #username="ngModel" [(ngModel)]="user.username" class="form-control" name="username" required>
       </fieldset>
       <div class="alert alert-danger" *ngIf="username.invalid && username.dirty" translate>Username is required</div>
     
       <ng-container *ngIf="showPassword">
         <fieldset class="form-group"> 
             <label translate>Password</label> 
-          <input type = "password" #password="ngModel" [(ngModel)]="user.password" class="form-control" name="password" required>
+          <input  type = "password" #password="ngModel" [(ngModel)]="user.password" class="form-control" name="password" required>
         </fieldset>
         <div class="alert alert-danger" *ngIf="password.invalid && password.dirty" translate>Password is required</div>
     </ng-container>
@@ -16,22 +16,22 @@
     <ng-container *ngIf="showPassword">
       <fieldset class="form-group"> 
           <label translate>Confirm Password</label> 
-        <input type = "password" #newPassword="ngModel" [(ngModel)]="user.newPassword" class="form-control" name="newPassword" required>
+        <input   type = "password" #newPassword="ngModel" [(ngModel)]="user.newPassword" class="form-control" name="newPassword" required>
       </fieldset>
       <div class="alert alert-danger" *ngIf="newPassword.invalid && newPassword.dirty" translate>Password is required</div>
   </ng-container>
 
   <fieldset class="form-group">
     <label translate>First Name</label>
-      <input type = "text" #firstname="ngModel" [(ngModel)]="user.firstName" class="form-control" name="firstname" required>
+      <input  type = "text" #firstname="ngModel" [(ngModel)]="user.firstName" class="form-control" name="firstname" required>
   </fieldset>
   <fieldset class="form-group">
     <label translate>Last Name</label>
-      <input type = "text" #lastname="ngModel" [(ngModel)]="user.lastName" class="form-control" name="lastname" required>
+      <input  type = "text" #lastname="ngModel" [(ngModel)]="user.lastName" class="form-control" name="lastname" required>
   </fieldset>
   <fieldset class="form-group">
-    <label translate>Address</label>
-      <input type = "text" #address="ngModel" [(ngModel)]="user.address" class="form-control" name="address" required>
+    <label translate>Birth date</label>
+      <input  type = "date" #address="ngModel" [(ngModel)]="user.birth" class="form-control" name="birth" required>
   </fieldset>
   <!-- <div class="alert alert-danger" *ngIf="address.invalid && address.dirty" translate>First Name is required</div> -->
   <div *ngIf='message' class="alert alert-danger" id="success-danger">
