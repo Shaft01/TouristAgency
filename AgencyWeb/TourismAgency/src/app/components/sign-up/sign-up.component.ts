@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserRequest } from 'src/app/model/userRequest';
 import { UserService } from 'src/app/service/userService';
 
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/service/userService';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private router:Router) { }
   user:UserRequest = new UserRequest();
   newPassword:string;
   showPassword:boolean = true;
@@ -26,6 +27,7 @@ export class SignUpComponent implements OnInit {
       this.user.authorityName = "ROLE_USER";
       this.userService.createUser(this.user).subscribe(response=>{
         console.log(response);
+        this.router.navigate(['login']);
       },
       error=>{
         this.invalidForm=true;

@@ -1,1 +1,17 @@
-<p>list-hotel-rooms works!</p>
+<div class="toolbar">
+    <button (click)="createHotelRoom()" class="btn btn-outline-toolbar">Create hotel room</button>
+</div>
+<table class="table table-striped table-dark">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>pricePerDay</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor=" let hotelRoom of hotelRooms">
+            <td>{{hotelRoom.id}}</td>
+            <td>{{hotelRoom.pricePerDay}}</td>
+        </tr>
+    </tbody>
+</table>

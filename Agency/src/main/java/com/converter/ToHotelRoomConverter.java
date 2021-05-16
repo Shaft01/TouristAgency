@@ -39,7 +39,7 @@ public class ToHotelRoomConverter implements Converter<HotelRoomDTO, HotelRoom> 
 				hotelRoom.setRoom(optional.get());
 			}
 		}
-		return null;
+		return hotelRoom;
 	}
 	public List<HotelRoom> convert(List<HotelRoomDTO> hotelRooms){
 		

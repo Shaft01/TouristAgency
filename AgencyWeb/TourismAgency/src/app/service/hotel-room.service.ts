@@ -12,4 +12,7 @@ import { HotelRoom } from "../model/hotelRoom";
     saveHotelRoom(hotelRoom:HotelRoom){
         return this.http.post<HotelRoom>(`${JPA_API_URL}/hotelRoom`,hotelRoom);
     }
+    getHotelRooms(){
+      return this.http.get<HotelRoom[]>(`${JPA_API_URL}/hotelRoom`);
+    }
 }

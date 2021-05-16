@@ -5,6 +5,7 @@ import { HotelRoom } from 'src/app/model/hotelRoom';
 import { Room } from 'src/app/model/room';
 import { HotelRoomService } from 'src/app/service/hotel-room.service';
 import { HotelService } from 'src/app/service/hotel.service';
+import { ImageService } from 'src/app/service/image.service';
 import { RoomService } from 'src/app/service/room.service';
 
 @Component({
@@ -14,25 +15,37 @@ import { RoomService } from 'src/app/service/room.service';
 })
 export class HotelRoomComponent implements OnInit {
   @Output() hotelRoomChange = new EventEmitter<HotelRoom>();
-  hotelRoom:HotelRoom;
+  hotelRoom:HotelRoom=new HotelRoom();
   hotels:Hotel[]=[];
   rooms:Room[]=[];
+  imageUpload:File = null;
   constructor(private roomService:RoomService,private hotelService:HotelService
-    ,private hotelRoomService:HotelRoomService,public activeModal: NgbActiveModal) { }
+    ,private hotelRoomService:HotelRoomService,
+    private imageService:ImageService,public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+    this.roomService.getAllRooms().subscribe(response=>{
+      this.rooms=response;
+      });
     this.hotelService.getAllHotels().subscribe(response=>{
       this.hotels=response;
     });
-    this.roomService.getAllRooms().subscribe(response=>{
-      this.rooms=response;
-    });
+   
   }
   saveHotelRoom(){
+    const formData = new FormData();
+    formData.append('image',this.imageUpload);
     this.hotelRoomService.saveHotelRoom(this.hotelRoom).subscribe(response=>{
       this.hotelRoomChange.emit(<HotelRoom>response);
-      this.activeModal.close();
-    })
+      return this.imageService.uploadImage(response.id,formData).subscribe(response=>{
+        this.activeModal.close();
+      });
+     
+    });
+  }
+  handleFileInput(event){
+    this.imageUpload = event.target.files[0];
+    
   }
 
 }

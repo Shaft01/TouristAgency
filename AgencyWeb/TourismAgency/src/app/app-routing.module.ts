@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
 import { ListCitiesComponent } from './components/list-cities/list-cities.component';
 import { ListCountriesComponent } from './components/list-countries/list-countries.component';
+import { ListHotelRoomsComponent } from './components/list-hotel-rooms/list-hotel-rooms.component';
 import { ListHotelsComponent } from './components/list-hotels/list-hotels.component';
 import { ListRoomsComponent } from './components/list-rooms/list-rooms.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path: 'cities', component:ListCitiesComponent,canActivate:[RouteGuardService]},
   {path: 'hotels', component:ListHotelsComponent, canActivate:[RouteGuardService]},
   {path: 'rooms', component:ListRoomsComponent, canActivate:[RouteGuardService]},
-  {path: 'hotelRooms',component:ListHotelsComponent, canActivate:[RouteGuardService]}
+  {path: 'hotelRooms',component:ListHotelRoomsComponent, canActivate:[RouteGuardService]}
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ public class CityDTO {
 	private Long id;
 	private String name;
 	private Long countryId;
+	private String countryName;
 	
 	public CityDTO() {
 		
@@ -14,6 +15,7 @@ public class CityDTO {
 		this.setId(source.getId());
 		this.setName(source.getName());
 		this.setCountryId(source.getCountry().getId());
+		this.setCountryName(source.getCountry().getName());
 	}
 	public Long getId() {
 		return id;
@@ -32,5 +34,11 @@ public class CityDTO {
 	}
 	public void setCountryId(Long countryId) {
 		this.countryId = countryId;
+	}
+	public String getCountryName() {
+		return countryName;
+	}
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 }

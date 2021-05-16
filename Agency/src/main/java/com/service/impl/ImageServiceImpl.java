@@ -61,6 +61,7 @@ public class ImageServiceImpl implements ImageService {
 	}
 	
 	public Image save(MultipartFile image, String name, Long hotelRoomId) {
+		
 		Path path=Paths.get(filesPath).resolve(name);
 		try(OutputStream outputStream =new FileOutputStream(path.toString())){
 			InputStream inputStream=image.getInputStream();
@@ -68,8 +69,8 @@ public class ImageServiceImpl implements ImageService {
 			
 			newImage.setPath(name);
 			Optional<HotelRoom> optional=hotelRoomRepo.findById(hotelRoomId);
-			newImage.setHotelRoom(optional.isPresent()? optional.get() : null);
-			
+			newImage.setHotelRoom(optional.isPresent()?  optional.get(): null);
+			System.out.println(newImage.getHotelRoom().getId());
 			
 			int read = 0;
 			byte[] buffer = new byte[1024];
