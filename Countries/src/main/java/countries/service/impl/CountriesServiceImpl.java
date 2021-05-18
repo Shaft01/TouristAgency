@@ -11,9 +11,9 @@ public class CountriesServiceImpl implements CountriesService {
 	private WebClient webClient = WebClient.create("https://restcountries.eu/rest/v2");
 	@Override
 	public Flux<Country> getAll() {
-		Flux<Country> country= webClient.get().uri("/all").retrieve()
+		return  webClient.get().uri("/all").retrieve()
 		        .bodyToFlux(Country.class);
-		return country;
+	
 	}
 
 }

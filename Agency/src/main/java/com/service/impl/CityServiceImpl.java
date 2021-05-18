@@ -1,6 +1,7 @@
 package com.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -19,8 +20,10 @@ public class CityServiceImpl implements CityService {
 	
 	@Override
 	public City save(City convert) {
-		
-		return cityRepo.save(convert);
+		City c= cityRepo.findByNameAndCountry(convert.getName(),convert.getCountry());
+		if(c==null)
+			return cityRepo.save(convert);
+		return null;
 	}
 
 	@Override
@@ -33,6 +36,17 @@ public class CityServiceImpl implements CityService {
 	public List<City> getAll() {
 		
 		return cityRepo.findAll();
+	}
+
+	@Override
+	public City delete(Long id) {
+		Optional<City> optional= cityRepo.findById(id);
+		if(optional.isPresent()) {
+			cityRepo.deleteById(id);
+			
+			return optional.get();
+		}
+		return null;
 	}
 
 }

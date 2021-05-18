@@ -24,8 +24,10 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public Room save(Room convert) {
-		
-		return roomRepo.save(convert);
+		Room room= roomRepo.findByType(convert.getType());
+		if(room==null)
+			return roomRepo.save(convert);
+		return null;
 	}
 
 }

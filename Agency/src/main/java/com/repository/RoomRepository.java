@@ -6,4 +6,6 @@ import com.model.Room;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
+	Room findByType(String type);
+
 }

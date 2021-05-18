@@ -11,18 +11,24 @@ import { CountryService } from 'src/app/service/country.service';
 export class CountryComponent implements OnInit {
   @Output() countryChange = new EventEmitter<Country>();
   country: Country=new Country();
+  showMessage:boolean=false;
   constructor(public activeModal: NgbActiveModal,
     private countryService:CountryService) { }
-  
+  remoteCountries:Country[]=[];
   ngOnInit(): void {
-   
+   this.countryService.getAllCountriesRemote().subscribe(response=>{
+     this.remoteCountries=response;
+   });
   }
 
   saveCountry(){
-    this.countryService.createCountry(this.country).subscribe(response=>{
+    console.log(this.country);
+    this.countryService.createCountry(this.country).subscribe((response)=>{
       this.countryChange.emit(<Country>response);
       this.activeModal.close();
+    },
+    (error)=>{
+     this.showMessage=true;
     });
-
   }
 }

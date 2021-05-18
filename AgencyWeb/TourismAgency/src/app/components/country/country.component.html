@@ -6,9 +6,13 @@
   </div>
   <div class="modal-body">
     <form #countryForm="ngForm">
-        <fieldset class="form-group"> 
-            <label >Country name</label> 
-           <input type="text" name="countryName" class="form-control" [(ngModel)]="country.name" required>
+        <fieldset class="form-group">
+          <label >Country name</label> 
+          <select class="form-control" id="countryName" #countryId="ngModel" [(ngModel)]="country.name" name="countryName" required>
+            <option [ngValue]="country.name" *ngFor="let country of remoteCountries">{{country.name}}</option>
+        </select>
+            
+           <!-- <input type="text" name="countryName" class="form-control" [(ngModel)]="country.name" required> -->
         </fieldset>
 
     </form>
@@ -20,4 +24,7 @@
   <div class="modal-footer">
     <button type="button" [disabled] = "countryForm.invalid" (click)="saveCountry()" id="closeModal" class="btn btn-primary" translate>Save</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" translate>Close</button>
+  </div>
+  <div *ngIf="showMessage">
+    <p class="alert alert-danger">Country Already exists</p>
   </div>

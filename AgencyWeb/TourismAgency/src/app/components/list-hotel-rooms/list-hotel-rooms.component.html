@@ -12,6 +12,7 @@
         <tr *ngFor=" let hotelRoom of hotelRooms">
             <td>{{hotelRoom.id}}</td>
             <td>{{hotelRoom.pricePerDay}}</td>
+            <td><img [src]="image" alt="" width="150" height="150" class="img-fluid img-thumbnail"></td>
         </tr>
     </tbody>
 </table>

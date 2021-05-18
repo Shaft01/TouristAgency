@@ -13,11 +13,13 @@ import { Country } from "../model/country";
         return this.http.post(`${JPA_API_URL}/country`,country);
     }
     getAllCountries(){
-        console.log(`${JPA_API_URL}/country`);
         return this.http.get<Country[]>(`${JPA_API_URL}/country`);
     }
     getCountryById(id:number){
         return this.http.get<Country>(`${JPA_API_URL}/country/${id}`);
+    }
+    getAllCountriesRemote(){
+        return this.http.get<Country[]>(`${JPA_API_URL}/country/get-all-remote`);
     }
     // getAllCountriesApi(){
     //     return this.http.get<Country[]>(`https://restcountries.eu/rest/v2/all`);

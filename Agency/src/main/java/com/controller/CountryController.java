@@ -29,6 +29,13 @@ public class CountryController {
 	@Autowired
 	ToCountryConverter toEntity;
 	
+	@GetMapping("get-all-remote")
+	public ResponseEntity<List<CountryDTO>> getAllRemote(){
+		List<Country> list =countryService.getAllRemote().collectList().block();
+		
+		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
+		
+	}
 	@GetMapping()
 	public ResponseEntity<List<CountryDTO>> getAll(){
 		List<Country> list = countryService.getAll();
@@ -39,9 +46,12 @@ public class CountryController {
 	public ResponseEntity<CountryDTO> insert(@RequestBody CountryDTO country){
 		
 		Country newCountry = countryService.save(toEntity.convert(country));
-		
+		if(newCountry==null) {
+			return new ResponseEntity<>(HttpStatus.FOUND);
+		}
 		return new ResponseEntity<>(toDTO.convert(newCountry),HttpStatus.CREATED);
 	}
+	
 	@GetMapping("{id}")
 	public ResponseEntity<CountryDTO> findById(@PathVariable Long id){
 		
@@ -50,7 +60,7 @@ public class CountryController {
 		return new ResponseEntity<>(toDTO.convert(country),HttpStatus.OK);
 		
 	}
-	@DeleteMapping("id")
+	@DeleteMapping("{id}")
 	public ResponseEntity<CountryDTO> delete(@PathVariable Long id){
 		Country deleted = countryService.delete(id);
 		if(deleted == null) {

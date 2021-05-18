@@ -7,15 +7,18 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.model.Country;
 import com.repository.CountryRepository;
 import com.service.CountryService;
 
+import reactor.core.publisher.Flux;
+
 @Service
 @Transactional
 public class CountryServiceImpl implements CountryService{
-
+	private WebClient webClient = WebClient.create("http://localhost:8081");
 	@Autowired
 	CountryRepository countryRepo;
 	@Override
@@ -46,13 +49,18 @@ public class CountryServiceImpl implements CountryService{
 	}
 	@Override
 	public Country findById(Long id) {
-Optional<Country> optional = countryRepo.findById(id);
+		Optional<Country> optional = countryRepo.findById(id);
 		
 		if(optional.isPresent()) {
 			
 			return optional.get();
 		}
 		return null;
+	}
+	@Override
+	public Flux<Country> getAllRemote() {
+		return  webClient.get().uri("/api/countries").retrieve()
+		        .bodyToFlux(Country.class);
 	}
 
 }

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -35,7 +36,7 @@ public class ImageServiceImpl implements ImageService {
 	HotelRoomRepository hotelRoomRepo;
 	
 	@Override
-	public Image save(MultipartFile image, Long hotelRoomId) {
+	public Image save(MultipartFile image, Long hotelRoomId) throws IOException {
 		String name="img_"+System.currentTimeMillis()+".png";
 		return save(image,name,hotelRoomId);
 		
@@ -60,9 +61,10 @@ public class ImageServiceImpl implements ImageService {
 		
 	}
 	
-	public Image save(MultipartFile image, String name, Long hotelRoomId) {
+	public Image save(MultipartFile image, String name, Long hotelRoomId) throws IOException {
 		
-		Path path=Paths.get(filesPath).resolve(name);
+		Path path=Files.createDirectories(Paths.get(filesPath).resolve(name));
+		
 		try(OutputStream outputStream =new FileOutputStream(path.toString())){
 			InputStream inputStream=image.getInputStream();
 			Image newImage=new Image();
@@ -70,7 +72,7 @@ public class ImageServiceImpl implements ImageService {
 			newImage.setPath(name);
 			Optional<HotelRoom> optional=hotelRoomRepo.findById(hotelRoomId);
 			newImage.setHotelRoom(optional.isPresent()?  optional.get(): null);
-			System.out.println(newImage.getHotelRoom().getId());
+			
 			
 			int read = 0;
 			byte[] buffer = new byte[1024];

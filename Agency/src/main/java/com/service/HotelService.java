@@ -12,4 +12,7 @@ public interface HotelService {
 
 	List<Hotel> getAllByCity(Long id);
 
+	Hotel delete(Long id);
+
+	
 }

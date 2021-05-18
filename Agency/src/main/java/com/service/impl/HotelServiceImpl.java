@@ -1,6 +1,7 @@
 package com.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -20,8 +21,10 @@ public class HotelServiceImpl implements HotelService{
 	@Override
 	public Hotel save(Hotel convert) {
 
-		
-		return hotelRepo.save(convert) ;
+		Hotel hotel= hotelRepo.findByNameAndCity(convert.getName(),convert.getCity());
+		if(hotel==null)
+			return hotelRepo.save(convert) ;
+		return null;
 	}
 	@Override
 	public List<Hotel> getAll() {
@@ -32,6 +35,16 @@ public class HotelServiceImpl implements HotelService{
 	public List<Hotel> getAllByCity(Long id) {
 		
 		return hotelRepo.findByCityId(id);
+	}
+	
+	@Override
+	public Hotel delete(Long id) {
+		Optional<Hotel> optional= hotelRepo.findById(id);
+		if(optional.isPresent()) {
+			hotelRepo.deleteById(id);
+			return optional.get();
+		}
+		return null;
 	}
 
 }

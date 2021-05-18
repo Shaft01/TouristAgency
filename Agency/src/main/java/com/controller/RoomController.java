@@ -38,7 +38,9 @@ public class RoomController {
 	@PostMapping()
 	public ResponseEntity<RoomDTO> insert(@RequestBody RoomDTO room){
 		Room newRoom = roomService.save(toEntity.convert(room));
-		
+		if(newRoom==null) {
+			return new ResponseEntity<>(HttpStatus.FOUND);
+		}
 		return new ResponseEntity<>(toDTO.convert(newRoom),HttpStatus.OK);
 	}
 }

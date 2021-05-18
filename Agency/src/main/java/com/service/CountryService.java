@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.model.Country;
 
+import reactor.core.publisher.Flux;
+
 public interface CountryService {
 
 	List<Country> getAll();
@@ -13,5 +15,7 @@ public interface CountryService {
 	Country delete(Long id);
 
 	Country findById(Long id);
+
+	Flux<Country> getAllRemote();
 
 }

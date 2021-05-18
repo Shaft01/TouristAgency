@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+<changeSet author="lazar" id="1">
+		<sql dbms="mysql"
+			splitStatements="true"
+			stripComments="true">
+			INSERT INTO `authority` (name) VALUES ('ROLE_ADMIN');
+			INSERT INTO `authority` (name) VALUES ('ROLE_USER');
+			
+			INSERT INTO `user` (birth_date,first_name,last_name,password,username) VALUES ('1997-07-16','User','User','$12$QgVQRGsB94RF1Zmj6sIAxu/0Di2uERUNFbWyaDV22kWY5RAMFIDzq','user@mail.com');
+			INSERT INTO `user_authority` (user_id, authority_id) VALUES (1, 1);
+			INSERT INTO `country` (name) VALUES ('Serbia');
+			INSERT INTO `city` (name,country_id) VALUES ('Belgrade',1);
+			INSERT INTO `hotel` (name,city_id) VALUES ('Jugoslavija',1);
+			INSERT INTO `room` (type) VALUES ('Jednokrevetna');
+			
+				
+			</sql>
+			</changeSet>
+</databaseChangeLog>

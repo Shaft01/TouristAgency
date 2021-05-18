@@ -12,4 +12,6 @@ public interface CityService {
 
 	List<City> getAll();
 
+	City delete(Long id);
+
 }
