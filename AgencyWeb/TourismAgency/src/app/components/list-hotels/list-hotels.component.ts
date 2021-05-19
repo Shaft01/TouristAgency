@@ -28,4 +28,18 @@ export class ListHotelsComponent implements OnInit {
       this.hotels=response;
     });
   }
+  openThis(name,event){
+    event.stopPropagation();
+
+    console.log(name);
+  }
+  edit(hotel:Hotel,event){
+    event.stopPropagation();
+
+    const modalRef =this.modalService.open(HotelComponent);
+    modalRef.componentInstance.hotel=hotel;
+    modalRef.componentInstance.hotelChange.subscribe(response=>{
+      this.loadHotels();
+    })
+  }
 }

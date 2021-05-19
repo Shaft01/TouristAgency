@@ -29,4 +29,17 @@ export class ListCountriesComponent implements OnInit {
       this.countries = response;
     });
   }
+  openThis(name,event){
+    event.stopPropagation();
+    
+    
+  }
+  edit(country){
+    event.stopPropagation();
+    const modalRef = this.modalService.open(CountryComponent);
+    modalRef.componentInstance.id=country.id;
+    modalRef.componentInstance.countryChange(response=>{
+      this.loadCountries();
+    });
+  }
 }

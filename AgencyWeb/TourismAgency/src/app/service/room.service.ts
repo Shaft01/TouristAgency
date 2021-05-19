@@ -18,4 +18,7 @@ import { Room } from "../model/room";
     getRoomById(id:number){
         return this.http.get<Room>(`${JPA_API_URL}/room/${id}`);
     }
+    updateRoom(room:Room){
+        return this.http.put<Room>(`${JPA_API_URL}/room/${room.id}`,room);
+    }
 }

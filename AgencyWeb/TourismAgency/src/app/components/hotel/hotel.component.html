@@ -26,3 +26,6 @@
     <button type="button" [disabled] = "hotelForm.invalid" (click)="saveHotel()" id="closeModal" class="btn btn-primary" translate>Save</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" translate>Close</button>
   </div>
+  <div *ngIf="showMessage">
+    <p class="alert alert-danger">Hotel Already exists</p>
+  </div>

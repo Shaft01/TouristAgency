@@ -6,7 +6,7 @@
   </div>
   <div class="modal-body">
     <form #countryForm="ngForm">
-        <fieldset class="form-group">
+        <fieldset class="form-group" *ngIf="id == -1">
           <label >Country name</label> 
           <select class="form-control" id="countryName" #countryId="ngModel" [(ngModel)]="country.name" name="countryName" required>
             <option [ngValue]="country.name" *ngFor="let country of remoteCountries">{{country.name}}</option>

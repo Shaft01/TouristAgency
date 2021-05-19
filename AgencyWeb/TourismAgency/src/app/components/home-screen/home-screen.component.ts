@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Country } from 'src/app/model/country';
 import { HotelRoom } from 'src/app/model/hotelRoom';
+import { CountryService } from 'src/app/service/country.service';
 import { HotelRoomService } from 'src/app/service/hotel-room.service';
 
 @Component({
@@ -9,12 +11,12 @@ import { HotelRoomService } from 'src/app/service/hotel-room.service';
 })
 export class HomeScreenComponent implements OnInit {
 
-  constructor(private hotelRoomService:HotelRoomService) { }
-  hotelRooms:HotelRoom[]=[];
+  constructor(private countryService:CountryService) { }
+  countries:Country[]=[];
   ngOnInit(): void {
-    this.hotelRoomService.getHotelRooms().subscribe(response=>{
-      this.hotelRooms=response;
-      console.log(this.hotelRooms);
+    this.countryService.getAllCountries().subscribe(response=>{
+      this.countries=response;
+      console.log(this.countries);
     });
   }
 

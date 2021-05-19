@@ -15,4 +15,7 @@ import { HotelRoom } from "../model/hotelRoom";
     getHotelRooms(){
       return this.http.get<HotelRoom[]>(`${JPA_API_URL}/hotelRoom`);
     }
+    updateHotelRooms(hotelRoom:HotelRoom){
+      return this.http.put<HotelRoom>(`${JPA_API_URL}/hotelRoom/${hotelRoom.id}`,hotelRoom);
+    }
 }

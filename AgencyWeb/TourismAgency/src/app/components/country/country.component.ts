@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Country } from 'src/app/model/country';
 import { CountryService } from 'src/app/service/country.service';
@@ -9,13 +9,15 @@ import { CountryService } from 'src/app/service/country.service';
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit {
+  @Input() id :number=-1;
   @Output() countryChange = new EventEmitter<Country>();
   country: Country=new Country();
   showMessage:boolean=false;
   constructor(public activeModal: NgbActiveModal,
-    private countryService:CountryService) { }
+             private countryService:CountryService) { }
   remoteCountries:Country[]=[];
   ngOnInit(): void {
+    console.log(this.id);
    this.countryService.getAllCountriesRemote().subscribe(response=>{
      this.remoteCountries=response;
    });

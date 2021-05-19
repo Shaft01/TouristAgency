@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { City } from 'src/app/model/city';
@@ -13,7 +13,8 @@ import { CountryService } from 'src/app/service/country.service';
 })
 export class CitiesComponent implements OnInit {
   @Output() cityChange = new EventEmitter<City>();
-  city:City= new City();
+  @Input() city:City= new City();
+  showMessage=false;
   countries:Country[]=[];
   constructor(public activeModal: NgbActiveModal,private cityService:CityService,private coutryService:CountryService) { }
 
@@ -23,10 +24,25 @@ export class CitiesComponent implements OnInit {
     });
   }
   saveCity(){
-    this.cityService.createCity(this.city).subscribe(response=>{
-      this.cityChange.emit(<City>response);
-      this.activeModal.close();
-    })
+    console.log(this.city.id);
+    if(this.city.id==undefined){
+      this.cityService.createCity(this.city).subscribe(response=>{
+        this.cityChange.emit(<City>response);
+        this.activeModal.close();
+      },
+      error=>{
+        this.showMessage=true;
+      })
+    }else{
+      this.cityService.updateCity(this.city).subscribe(response=>{
+        this.cityChange.emit(<City>response);
+        this.activeModal.close();
+      },
+      error=>{
+        this.showMessage=true;
+      })
+    }
   }
+
 
 }

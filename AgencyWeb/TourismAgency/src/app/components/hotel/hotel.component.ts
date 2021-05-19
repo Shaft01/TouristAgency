@@ -1,4 +1,4 @@
-import { Component, OnInit, Output ,EventEmitter} from '@angular/core';
+import { Component, OnInit, Output ,EventEmitter, Input} from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { City } from 'src/app/model/city';
 import { Hotel } from 'src/app/model/hotel';
@@ -14,7 +14,8 @@ import { HotelService } from 'src/app/service/hotel.service';
 export class HotelComponent implements OnInit {
   @Output() hotelChange = new EventEmitter<Hotel>();
   cities:City[]=[];
-  hotel:Hotel=new Hotel();
+  showMessage=false;
+  @Input() hotel:Hotel=new Hotel();
   constructor(public activeModal: NgbActiveModal,private cityService:CityService,private hotelService:HotelService) { }
 
   ngOnInit(): void {
@@ -23,12 +24,23 @@ export class HotelComponent implements OnInit {
     });
   }
   saveHotel(){
-    console.log(this.hotel.name);
-    console.log(this.hotel.cityId);
-    this.hotelService.createHotel(this.hotel).subscribe(response=>{
+ if(this.hotel.id==undefined){
+      this.hotelService.createHotel(this.hotel).subscribe(response=>{
+        this.hotelChange.emit(<Hotel>response);
+        this.activeModal.close();
+      },
+      error=>{
+        this.showMessage=true;
+      });
+   }else{
+     this.hotelService.updateHotel(this.hotel).subscribe(response=>{
       this.hotelChange.emit(<Hotel>response);
       this.activeModal.close();
-    });
-  }
+    },
+    error=>{
+      this.showMessage=true;
+     });
+   }
+}
 
 }

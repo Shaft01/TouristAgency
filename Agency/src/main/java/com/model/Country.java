@@ -20,6 +20,9 @@ public class Country {
 	@Column()
 	private String name;
 	
+	@Column()
+	private String imagePath;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "country")
 	private List<City> cities;
 	
@@ -49,5 +52,13 @@ public class Country {
 
 	public void setCities(List<City> cities) {
 		this.cities = cities;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

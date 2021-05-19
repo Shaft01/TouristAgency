@@ -29,4 +29,17 @@ export class ListCitiesComponent implements OnInit {
       this.cities = response;
     });
   }
+  openThis(name,event){
+    event.stopPropagation();
+    console.log(name);
+  }
+  edit(city,event){
+    event.stopPropagation();
+
+    const modalRef =this.modalService.open(CitiesComponent);
+    modalRef.componentInstance.city=city;
+    modalRef.componentInstance.cityChange.subscribe(response=>{
+      this.loadCities();
+    });
+  }
 }

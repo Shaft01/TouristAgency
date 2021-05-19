@@ -21,6 +21,9 @@ import { Country } from "../model/country";
     getAllCountriesRemote(){
         return this.http.get<Country[]>(`${JPA_API_URL}/country/get-all-remote`);
     }
+    updateCountry(country){
+        return this.http.get<Country>(`${JPA_API_URL}/country/${country.id}`,country);
+    }
     // getAllCountriesApi(){
     //     return this.http.get<Country[]>(`https://restcountries.eu/rest/v2/all`);
     // }

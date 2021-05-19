@@ -7,6 +7,7 @@ import { City } from "../model/city";
     providedIn: 'root'
   })
   export class CityService{
+    
     constructor(private http:HttpClient){}
 
     createCity(city:City){
@@ -17,5 +18,8 @@ import { City } from "../model/city";
     }
     getCitiesByCountry(countryId:number){
         return this.http.get<City[]>(`${JPA_API_URL}/city/get-by-country?countryId=${countryId}`);
+    }
+    updateCity(city: City) {
+        return this.http.put<City>(`${JPA_API_URL}/city/${city.id}`,city);
     }
   }

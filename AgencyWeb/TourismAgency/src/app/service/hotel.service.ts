@@ -18,4 +18,7 @@ import { Hotel } from "../model/hotel";
     getHotelsByCity(cityId:number){
         return this.http.get<Hotel[]>(`${JPA_API_URL}/hotel/get-by-city?cityId=${cityId}`);
     }
+    updateHotel(hotel:Hotel){
+        return this.http.put<Hotel>(`${JPA_API_URL}/hotel/${hotel.id}`,hotel);
+    }
   }

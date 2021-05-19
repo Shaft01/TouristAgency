@@ -14,6 +14,7 @@ public class ToCountryConverter implements Converter<CountryDTO, Country> {
 		Country country = new Country();
 		country.setId(source.getId());
 		country.setName(source.getName());
+		country.setImagePath(source.getImagePath());
 		return country;
 	}
 	

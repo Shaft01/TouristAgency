@@ -7,7 +7,7 @@
 			INSERT INTO `authority` (name) VALUES ('ROLE_ADMIN');
 			INSERT INTO `authority` (name) VALUES ('ROLE_USER');
 			
-			INSERT INTO `user` (birth_date,first_name,last_name,password,username) VALUES ('1997-07-16','User','User','$12$QgVQRGsB94RF1Zmj6sIAxu/0Di2uERUNFbWyaDV22kWY5RAMFIDzq','user@mail.com');
+			INSERT INTO `user` (birth_date,first_name,last_name,password,username) VALUES ('1997-07-16','User','User','$2a$12$hzKBuHe5o4.pxb.Q7STCf.m7VfiiYfQFKdWAJTSNyGcp0aFfsCPPG','user@mail.com');
 			INSERT INTO `user_authority` (user_id, authority_id) VALUES (1, 1);
 			INSERT INTO `country` (name) VALUES ('Serbia');
 			INSERT INTO `city` (name,country_id) VALUES ('Belgrade',1);

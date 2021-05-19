@@ -19,7 +19,8 @@ public class City {
 	
 	@Column
 	private String name;
-	
+	@Column
+	private String imagePath;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Country country;
 	
@@ -60,6 +61,14 @@ public class City {
 
 	public void setHotels(List<Hotel> hotels) {
 		this.hotels = hotels;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 }

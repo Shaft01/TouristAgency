@@ -20,6 +20,7 @@ public class ToCityConverter implements Converter<CityDTO, City> {
 		City city = new City();
 		city.setId(source.getId());
 		city.setName(source.getName());
+		city.setImagePath(source.getImagePath());
 		if(source.getCountryId() != null) {
 			Optional<Country> country = countryRepo.findById(source.getCountryId());
 			if(country.isPresent()) {
