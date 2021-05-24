@@ -10,10 +10,12 @@ import com.model.Image;
 
 public interface ImageService {
 
-	Image save(MultipartFile image, Long hotelRoomId) throws IOException;
+	Boolean save(MultipartFile image,String type, Long id) throws IOException;
 
 	List<Image> getImagesByRoom(Long id);
 
 	InputStreamResource openImage(Long id);
+
+	InputStreamResource openImagePath(String path);
 
 }

@@ -26,7 +26,7 @@ public class ToHotelRoomConverter implements Converter<HotelRoomDTO, HotelRoom> 
 	public HotelRoom convert(HotelRoomDTO source) {
 		HotelRoom hotelRoom = new HotelRoom();
 		hotelRoom.setId(source.getId());
-		hotelRoom.setPricePerDay(source.getPricePerDay());
+		hotelRoom.setPricePerPerson(source.getPricePerPerson());
 		if(source.getHotelId()!=null) {
 			Optional<Hotel> optional = hotelRepo.findById(source.getHotelId());
 			if(optional.isPresent()) {

@@ -28,4 +28,10 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 		return hotelRoomRepo.findAll();
 	}
 
+	@Override
+	public List<HotelRoom> getAllByHotel(Long id) {
+		
+		return hotelRoomRepo.findByHotelId(id);
+	}
+
 }

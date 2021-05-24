@@ -20,10 +20,18 @@ public class CityServiceImpl implements CityService {
 	
 	@Override
 	public City save(City convert) {
-		City c= cityRepo.findByNameAndCountry(convert.getName(),convert.getCountry());
-		if(c==null)
+		if(convert.getId() != null) {
 			return cityRepo.save(convert);
-		return null;
+		}else {
+			City c= cityRepo.findByNameAndCountry(convert.getName(), convert.getCountry());
+			if(c!=null) {
+				return null;
+			}else {
+				return cityRepo.save(convert);
+			}
+		}
+			
+
 	}
 
 	@Override

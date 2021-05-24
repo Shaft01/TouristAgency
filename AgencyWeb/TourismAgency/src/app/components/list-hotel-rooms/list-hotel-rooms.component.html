@@ -5,14 +5,14 @@
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>pricePerDay</th>
+            <th>price per person</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor=" let hotelRoom of hotelRooms">
             <td>{{hotelRoom.id}}</td>
-            <td>{{hotelRoom.pricePerDay}}</td>
-            <td><img [src]="image" alt="" width="150" height="150" class="img-fluid img-thumbnail"></td>
+            <td>{{hotelRoom.pricePerPerson}} €</td>
+            <td><button (click)="createArrangement(hotelRoom)">Create arrangement</button></td>
         </tr>
     </tbody>
 </table>

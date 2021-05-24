@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="lazar (generated)" id="1620477798125-1">
+    <changeSet author="lazar (generated)" id="1621583499601-1">
         <createTable tableName="arrangement">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="arrangementPK"/>
@@ -13,7 +13,7 @@
             <column name="user_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-2">
+    <changeSet author="lazar (generated)" id="1621583499601-2">
         <createTable tableName="authority">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="authorityPK"/>
@@ -21,43 +21,49 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-3">
+    <changeSet author="lazar (generated)" id="1621583499601-3">
         <createTable tableName="city">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="cityPK"/>
             </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="image_path" type="VARCHAR(255)"/>
             <column name="name" type="VARCHAR(255)"/>
             <column name="country_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-4">
+    <changeSet author="lazar (generated)" id="1621583499601-4">
         <createTable tableName="country">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="countryPK"/>
             </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="image_path" type="VARCHAR(255)"/>
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-5">
+    <changeSet author="lazar (generated)" id="1621583499601-5">
         <createTable tableName="hotel">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="hotelPK"/>
             </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="image_path" type="VARCHAR(255)"/>
             <column name="name" type="VARCHAR(255)"/>
             <column name="city_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-6">
+    <changeSet author="lazar (generated)" id="1621583499601-6">
         <createTable tableName="hotel_room">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="hotel_roomPK"/>
             </column>
-            <column name="price_per_day" type="DOUBLE"/>
+            <column name="price_per_person" type="DOUBLE"/>
             <column name="hotel_id" type="BIGINT"/>
             <column name="room_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-7">
+    <changeSet author="lazar (generated)" id="1621583499601-7">
         <createTable tableName="image">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="imagePK"/>
@@ -66,7 +72,7 @@
             <column name="hotel_room_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-8">
+    <changeSet author="lazar (generated)" id="1621583499601-8">
         <createTable tableName="room">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="roomPK"/>
@@ -74,7 +80,7 @@
             <column name="type" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-9">
+    <changeSet author="lazar (generated)" id="1621583499601-9">
         <createTable tableName="user">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="userPK"/>
@@ -86,7 +92,7 @@
             <column name="username" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-10">
+    <changeSet author="lazar (generated)" id="1621583499601-10">
         <createTable tableName="user_authority">
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -96,34 +102,34 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-11">
+    <changeSet author="lazar (generated)" id="1621583499601-11">
         <addUniqueConstraint columnNames="type" constraintName="UKc20fo9ro0p1o566p6h1r728pv" tableName="room"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-12">
+    <changeSet author="lazar (generated)" id="1621583499601-12">
         <addForeignKeyConstraint baseColumnNames="room_id" baseTableName="hotel_room" constraintName="FK3agyuk66kblb5rv6986of98c2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="room"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-13">
+    <changeSet author="lazar (generated)" id="1621583499601-13">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="arrangement" constraintName="FKbojy3tnto5mh61mwosw3av475" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-14">
+    <changeSet author="lazar (generated)" id="1621583499601-14">
         <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="hotel" constraintName="FKf1iabdv6bi2yohh9h48wce42x" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="city"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-15">
+    <changeSet author="lazar (generated)" id="1621583499601-15">
         <addForeignKeyConstraint baseColumnNames="hotel_room_id" baseTableName="arrangement" constraintName="FKf5058grfnxlrq1pvjiq69tach" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="hotel_room"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-16">
+    <changeSet author="lazar (generated)" id="1621583499601-16">
         <addForeignKeyConstraint baseColumnNames="authority_id" baseTableName="user_authority" constraintName="FKgvxjs381k6f48d5d2yi11uh89" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="authority"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-17">
+    <changeSet author="lazar (generated)" id="1621583499601-17">
         <addForeignKeyConstraint baseColumnNames="hotel_id" baseTableName="hotel_room" constraintName="FKkidx9n5p4parnjnpg912svvgi" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="hotel"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-18">
+    <changeSet author="lazar (generated)" id="1621583499601-18">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="FKpqlsjpkybgos9w2svcri7j8xy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-19">
+    <changeSet author="lazar (generated)" id="1621583499601-19">
         <addForeignKeyConstraint baseColumnNames="country_id" baseTableName="city" constraintName="FKrpd7j1p7yxr784adkx4pyepba" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="country"/>
     </changeSet>
-    <changeSet author="lazar (generated)" id="1620477798125-20">
+    <changeSet author="lazar (generated)" id="1621583499601-20">
         <addForeignKeyConstraint baseColumnNames="hotel_room_id" baseTableName="image" constraintName="FKsgpb3i9pumm03yrv4itopkj3k" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="hotel_room"/>
     </changeSet>
 </databaseChangeLog>

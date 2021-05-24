@@ -21,6 +21,7 @@ import { RoomComponent } from './components/room/room.component';
 import { ListRoomsComponent } from './components/list-rooms/list-rooms.component';
 import { HotelRoomComponent } from './components/hotel-room/hotel-room.component';
 import { ListHotelRoomsComponent } from './components/list-hotel-rooms/list-hotel-rooms.component';
+import { AppointmentComponent } from './components/appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ListHotelRoomsComponent } from './components/list-hotel-rooms/list-hote
     RoomComponent,
     ListRoomsComponent,
     HotelRoomComponent,
-    ListHotelRoomsComponent
+    ListHotelRoomsComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,13 @@
 package com.service.impl;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -21,6 +23,7 @@ public class CountryServiceImpl implements CountryService{
 	private WebClient webClient = WebClient.create("http://localhost:8081");
 	@Autowired
 	CountryRepository countryRepo;
+	
 	@Override
 	public List<Country> getAll() {
 		
@@ -28,11 +31,17 @@ public class CountryServiceImpl implements CountryService{
 	}
 	@Override
 	public Country save(Country convert) {
-		Country c = countryRepo.findByName(convert.getName());
-		if(c == null) {
+		if(convert.getId()!=null) {
+			
 			return countryRepo.save(convert);
+		}else {
+			Country c= countryRepo.findByName(convert.getName());
+			if(c!=null) {
+				return null;
+			}else {
+				return countryRepo.save(convert);
+			}
 		}
-		return null;
 	}
 	@Override
 	public Country delete(Long id) {
@@ -62,5 +71,6 @@ public class CountryServiceImpl implements CountryService{
 		return  webClient.get().uri("/api/countries").retrieve()
 		        .bodyToFlux(Country.class);
 	}
+	
 
 }

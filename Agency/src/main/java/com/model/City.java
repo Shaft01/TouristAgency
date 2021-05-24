@@ -23,7 +23,8 @@ public class City {
 	private String imagePath;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Country country;
-	
+	@Column 
+	private String description;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "city")
 	private List<Hotel> hotels;
 	
@@ -69,6 +70,14 @@ public class City {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

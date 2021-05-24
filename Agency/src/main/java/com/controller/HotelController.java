@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,11 +60,24 @@ public class HotelController {
 		return new ResponseEntity<>(toDTO.convert(deleted),
 				HttpStatus.OK);
 	}
-	@GetMapping("get-by-cities")
-	 private ResponseEntity<List<HotelDTO>>getAllByCity(@RequestParam Long id){
+	@GetMapping("get-by-city")
+	 public ResponseEntity<List<HotelDTO>>getAllByCity(@RequestParam("cityId") Long id){
 		List<Hotel> list = hotelService.getAllByCity(id);
 		
 		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
+	}
+	@PutMapping("{id}")
+	public ResponseEntity<HotelDTO> update(@PathVariable Long id,@RequestBody HotelDTO hotel){
+		if(!id.equals(hotel.getId())){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Hotel persisted = hotelService.save(
+				toEntity.convert(hotel));
+		
+		return new ResponseEntity<>(
+				toDTO.convert(persisted),
+				HttpStatus.OK);
 	}
 
 }

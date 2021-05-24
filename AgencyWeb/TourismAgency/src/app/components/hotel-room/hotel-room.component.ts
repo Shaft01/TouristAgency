@@ -18,6 +18,7 @@ export class HotelRoomComponent implements OnInit {
   hotelRoom:HotelRoom=new HotelRoom();
   hotels:Hotel[]=[];
   rooms:Room[]=[];
+  type;
   imageUpload:File = null;
   constructor(private roomService:RoomService,private hotelService:HotelService
     ,private hotelRoomService:HotelRoomService,
@@ -37,7 +38,7 @@ export class HotelRoomComponent implements OnInit {
     formData.append('image',this.imageUpload);
     this.hotelRoomService.saveHotelRoom(this.hotelRoom).subscribe(response=>{
       this.hotelRoomChange.emit(<HotelRoom>response);
-      return this.imageService.uploadImage(response.id,formData).subscribe(response=>{
+      return this.imageService.uploadImage(response.id,this.type,formData).subscribe(response=>{
         this.activeModal.close();
       });
      

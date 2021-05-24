@@ -21,10 +21,9 @@ public class HotelServiceImpl implements HotelService{
 	@Override
 	public Hotel save(Hotel convert) {
 
-		Hotel hotel= hotelRepo.findByNameAndCity(convert.getName(),convert.getCity());
-		if(hotel==null)
+		
 			return hotelRepo.save(convert) ;
-		return null;
+	
 	}
 	@Override
 	public List<Hotel> getAll() {

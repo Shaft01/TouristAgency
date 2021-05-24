@@ -3,19 +3,24 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.converter.ToCountryConverter;
 import com.converter.ToCountryDTOConverter;
 import com.dto.CountryDTO;
+import com.model.City;
 import com.model.Country;
 import com.service.CountryService;
 
@@ -42,6 +47,7 @@ public class CountryController {
 		
 		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
 	}
+	
 	@PostMapping()
 	public ResponseEntity<CountryDTO> insert(@RequestBody CountryDTO country){
 		
@@ -67,6 +73,19 @@ public class CountryController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(toDTO.convert(deleted),
+				HttpStatus.OK);
+	}
+	@PutMapping("{id}")
+	public ResponseEntity<CountryDTO> update(@PathVariable Long id,@RequestBody CountryDTO country){
+		if(!id.equals(country.getId())){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Country persisted = countryService.save(
+				toEntity.convert(country));
+		
+		return new ResponseEntity<>(
+				toDTO.convert(persisted),
 				HttpStatus.OK);
 	}
 }

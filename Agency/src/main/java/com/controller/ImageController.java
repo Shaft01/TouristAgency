@@ -29,10 +29,10 @@ public class ImageController {
 	private ImageService imageService;
 	@Autowired
 	private ToImageDTOConverter toDTO;
-	@PostMapping("{hotelRoomId}")
-	public void uploadImage (@RequestParam("image") MultipartFile image,@PathVariable() Long hotelRoomId) {
+	@PostMapping("{id}")
+	public void uploadImage (@RequestParam("image") MultipartFile image,@RequestParam("type")String type,@PathVariable() Long id) {
 		try {
-			imageService.save(image,hotelRoomId);
+			imageService.save(image,type,id);
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -48,5 +48,14 @@ public class ImageController {
 		InputStreamResource resources = imageService.openImage(id);
 		return  ResponseEntity.ok().contentType(MediaType.parseMediaType("image/png")).body(resources);
 
+	}
+	@GetMapping("open-image")
+	public ResponseEntity<InputStreamResource> getImage(@RequestParam String path){
+		
+			InputStreamResource resources = imageService.openImagePath(path);
+			if(resources!=null) {
+				return  ResponseEntity.ok().contentType(MediaType.parseMediaType("image/png")).body(resources);
+			}
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 }

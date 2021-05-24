@@ -7,7 +7,7 @@ public class HotelRoomDTO {
 	private Long id;
 	private Long hotelId;
 	private Long roomId;
-	private Double pricePerDay;
+	private Double pricePerPerson;
 	private String hotelName;
 	private String roomType;
 	
@@ -18,7 +18,7 @@ public class HotelRoomDTO {
 		this.id = source.getId();
 		this.hotelId = source.getHotel().getId();
 		this.roomId = source.getRoom().getId();
-		this.pricePerDay = source.getPricePerDay();
+		this.pricePerPerson = source.getPricePerPerson();
 		this.hotelName = source.getHotel().getName();
 		this.roomType = source.getRoom().getType();
 	}
@@ -40,12 +40,7 @@ public class HotelRoomDTO {
 	public void setRoomId(Long roomId) {
 		this.roomId = roomId;
 	}
-	public Double getPricePerDay() {
-		return pricePerDay;
-	}
-	public void setPricePerDay(Double pricePerDay) {
-		this.pricePerDay = pricePerDay;
-	}
+	
 	public String getHotelName() {
 		return hotelName;
 	}
@@ -57,5 +52,11 @@ public class HotelRoomDTO {
 	}
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
+	}
+	public Double getPricePerPerson() {
+		return pricePerPerson;
+	}
+	public void setPricePerPerson(Double pricePerPerson) {
+		this.pricePerPerson = pricePerPerson;
 	}
 }

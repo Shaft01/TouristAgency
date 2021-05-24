@@ -7,10 +7,11 @@ import { Country } from "../model/country";
     providedIn: 'root'
   })
   export class CountryService{
+    
     constructor(private http:HttpClient){}
     
     createCountry(country:Country){
-        return this.http.post(`${JPA_API_URL}/country`,country);
+        return this.http.post<Country>(`${JPA_API_URL}/country`,country);
     }
     getAllCountries(){
         return this.http.get<Country[]>(`${JPA_API_URL}/country`);
@@ -21,13 +22,12 @@ import { Country } from "../model/country";
     getAllCountriesRemote(){
         return this.http.get<Country[]>(`${JPA_API_URL}/country/get-all-remote`);
     }
-    updateCountry(country){
-        return this.http.get<Country>(`${JPA_API_URL}/country/${country.id}`,country);
+    updateCountry(country:Country){
+        return this.http.put<Country>(`${JPA_API_URL}/country/${country.id}`,country);
     }
-    // getAllCountriesApi(){
-    //     return this.http.get<Country[]>(`https://restcountries.eu/rest/v2/all`);
-    // }
-
+    deleteCountry(id){
+        return this.http.delete<Country>(`${JPA_API_URL}/country/${id}`);
+    }
     
 }
   

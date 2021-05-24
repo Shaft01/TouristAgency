@@ -22,4 +22,7 @@ import { City } from "../model/city";
     updateCity(city: City) {
         return this.http.put<City>(`${JPA_API_URL}/city/${city.id}`,city);
     }
+    deleteCity(id){
+        return this.http.delete<City>(`${JPA_API_URL}/city/${id}`);
+    }
   }

@@ -36,6 +36,9 @@ export class ListHotelRoomsComponent implements OnInit {
       })
     }
   }
+  createArrangement(hotelRoom){
+    
+  }
   createHotelRoom(){
     const modalRef =this.modalService.open(HotelRoomComponent);
     modalRef.componentInstance.hotelRoomChange.subscribe(response=>{

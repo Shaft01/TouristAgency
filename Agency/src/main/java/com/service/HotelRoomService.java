@@ -10,4 +10,6 @@ public interface HotelRoomService {
 
 	List<HotelRoom> getAll();
 
+	List<HotelRoom> getAllByHotel(Long id);
+
 }

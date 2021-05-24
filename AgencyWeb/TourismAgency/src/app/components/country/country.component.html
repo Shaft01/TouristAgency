@@ -6,21 +6,22 @@
   </div>
   <div class="modal-body">
     <form #countryForm="ngForm">
-        <fieldset class="form-group" *ngIf="id == -1">
+        <fieldset class="form-group" *ngIf="country.id == undefined">
           <label >Country name</label> 
           <select class="form-control" id="countryName" #countryId="ngModel" [(ngModel)]="country.name" name="countryName" required>
             <option [ngValue]="country.name" *ngFor="let country of remoteCountries">{{country.name}}</option>
         </select>
-            
-           <!-- <input type="text" name="countryName" class="form-control" [(ngModel)]="country.name" required> -->
         </fieldset>
-
+        <fieldset class="form-group">
+          <label>Descritpion</label>
+          <textarea class="form-control" id="description" [(ngModel)]="country.description" rows="2" name="description"></textarea>
+        </fieldset>
     </form>
-
+    <fieldset class="form-group" *ngIf="country.id == undefined">
+      <label>Upload image</label>
+      <input type="file" id="image" accept="image/*" (change)="handleFileInput($event)">
+    </fieldset>
   </div>
-
-  <!-- <div style="width: 90%; margin-left: 5%;" *ngIf='invalidForm' class="alert alert-danger" translate>An error occured!<div translate>Please contact your system administrator!</div></div> -->
-
   <div class="modal-footer">
     <button type="button" [disabled] = "countryForm.invalid" (click)="saveCountry()" id="closeModal" class="btn btn-primary" translate>Save</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" translate>Close</button>

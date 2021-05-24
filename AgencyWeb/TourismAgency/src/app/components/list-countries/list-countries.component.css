@@ -2,3 +2,15 @@
     display: block;
     padding: 3rem 3rem 0 3rem;
   }
+  .card-deck{
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  .card-deck>*{
+    box-sizing: border-box;
+  }
+  /* .card-deck > *:not(:last-child) {
+    margin-right: 32px;
+  } */
+ 
+  

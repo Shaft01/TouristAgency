@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.converter.ToHotelRoomConverter;
@@ -36,6 +37,12 @@ public class HotelRoomController {
 	@GetMapping()
 	public ResponseEntity<List<HotelRoomDTO>> getAll(){
 		List<HotelRoom> list = hotelRoomService.getAll();
+		
+		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
+	}
+	@GetMapping("get-by-hotel")
+	public ResponseEntity<List<HotelRoomDTO>> getAllByHotel(@RequestParam("hotelId") Long id){
+		List<HotelRoom> list = hotelRoomService.getAllByHotel(id);
 		
 		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
 	}

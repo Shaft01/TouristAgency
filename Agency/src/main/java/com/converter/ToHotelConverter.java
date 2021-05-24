@@ -20,6 +20,8 @@ public class ToHotelConverter implements Converter<HotelDTO, Hotel>{
 		Hotel hotel=new Hotel();
 		hotel.setId(source.getId());
 		hotel.setName(source.getName());
+		hotel.setDescription(source.getDescription());
+		hotel.setImagePath(source.getImagePath());
 		if(source.getCityId()!=null) {
 			Optional<City> optional=cityRepo.findById(source.getCityId());
 			if(optional.isPresent()) {

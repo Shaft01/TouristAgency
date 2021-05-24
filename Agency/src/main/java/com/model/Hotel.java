@@ -21,7 +21,10 @@ public class Hotel {
 
 	@Column
 	private String name;
-	
+	@Column
+	private String description;
+	@Column
+	private String imagePath;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private City city;
 	
@@ -59,5 +62,17 @@ public class Hotel {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

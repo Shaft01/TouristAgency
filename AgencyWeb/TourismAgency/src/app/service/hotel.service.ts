@@ -21,4 +21,7 @@ import { Hotel } from "../model/hotel";
     updateHotel(hotel:Hotel){
         return this.http.put<Hotel>(`${JPA_API_URL}/hotel/${hotel.id}`,hotel);
     }
+    deleteHotel(id){
+        return this.http.delete<Hotel>(`${JPA_API_URL}/hotel/${id}`);
+    }
   }

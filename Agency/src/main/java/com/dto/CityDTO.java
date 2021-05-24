@@ -8,6 +8,7 @@ public class CityDTO {
 	private Long countryId;
 	private String countryName;
 	private String imagePath;
+	private String description;
 	public CityDTO() {
 		
 	}
@@ -17,6 +18,7 @@ public class CityDTO {
 		this.setCountryId(source.getCountry().getId());
 		this.setCountryName(source.getCountry().getName());
 		this.setImagePath(source.getImagePath());
+		this.setDescription(source.getDescription());
 	}
 	public Long getId() {
 		return id;
@@ -47,5 +49,11 @@ public class CityDTO {
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

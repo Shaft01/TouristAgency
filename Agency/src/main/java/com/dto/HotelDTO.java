@@ -7,7 +7,8 @@ public class HotelDTO {
 	private String name;
 	private Long cityId;
 	private String cityName;
-	
+	private String description;
+	private String imagePath;
 	public HotelDTO() {
 		
 	}
@@ -15,6 +16,8 @@ public class HotelDTO {
 		this.id = source.getId();
 		this.name = source.getName();
 		this.cityId = source.getCity().getId();
+		this.description = source.getDescription();
+		this.setImagePath(source.getImagePath());
 		this.setCityName(source.getCity().getName());
 	}
 	public Long getId() {
@@ -40,5 +43,17 @@ public class HotelDTO {
 	}
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

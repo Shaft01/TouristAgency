@@ -16,6 +16,14 @@
                 <option [ngValue]="city.id" *ngFor="let city of cities">{{city.name}}</option>
             </select>
         </fieldset>
+        <fieldset class="form-group">
+          <label>Descritpion</label>
+          <textarea class="form-control" id="description" [(ngModel)]="hotel.description" rows="2" name="description"></textarea>
+        </fieldset>
+        <fieldset class="form-group" *ngIf="hotel.id == undefined">
+          <label>Upload image</label>
+          <input type="file" id="image" accept="image/*" (change)="handleFileInput($event)">
+        </fieldset>
     </form>
 
   </div>
