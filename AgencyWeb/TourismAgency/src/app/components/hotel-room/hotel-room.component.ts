@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Hotel } from 'src/app/model/hotel';
 import { HotelRoom } from 'src/app/model/hotelRoom';
@@ -16,6 +16,7 @@ import { RoomService } from 'src/app/service/room.service';
 export class HotelRoomComponent implements OnInit {
   @Output() hotelRoomChange = new EventEmitter<HotelRoom>();
   hotelRoom:HotelRoom=new HotelRoom();
+  @Input() hotel:Hotel=new Hotel();
   hotels:Hotel[]=[];
   rooms:Room[]=[];
   type;
@@ -34,14 +35,19 @@ export class HotelRoomComponent implements OnInit {
    
   }
   saveHotelRoom(){
+    if(this.hotelRoom.hotelId==null){
+      this.hotelRoom.hotelId=this.hotel.id;
+    }
     const formData = new FormData();
     formData.append('image',this.imageUpload);
     this.hotelRoomService.saveHotelRoom(this.hotelRoom).subscribe(response=>{
       this.hotelRoomChange.emit(<HotelRoom>response);
-      return this.imageService.uploadImage(response.id,this.type,formData).subscribe(response=>{
-        this.activeModal.close();
+      if(this.imageUpload!=null){
+        return this.imageService.uploadImage(response.id,this.type,formData).subscribe(response=>{
+        
       });
-     
+    }
+    this.activeModal.close();
     });
   }
   handleFileInput(event){

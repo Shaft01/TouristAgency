@@ -1,6 +1,7 @@
 package com.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -32,6 +33,25 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 	public List<HotelRoom> getAllByHotel(Long id) {
 		
 		return hotelRoomRepo.findByHotelId(id);
+	}
+
+	@Override
+	public HotelRoom findById(Long id) {
+		Optional<HotelRoom> optional = hotelRoomRepo.findById(id);
+		if(optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+	}
+
+	@Override
+	public HotelRoom delete(Long id) {
+		Optional<HotelRoom> optional = hotelRoomRepo.findById(id);
+		if(optional.isPresent()) {
+			hotelRoomRepo.deleteById(id);
+			return optional.get();
+		}
+		return null;
 	}
 
 }

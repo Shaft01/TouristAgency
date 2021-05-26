@@ -8,7 +8,10 @@ import { HotelRoom } from "../model/hotelRoom";
   })
   export class HotelRoomService{
     constructor(private http:HttpClient){}
-  
+    
+    getHotelRoomById(id){
+      return this.http.get<HotelRoom>(`${JPA_API_URL}/hotelRoom/${id}`);
+    }
     saveHotelRoom(hotelRoom:HotelRoom){
         return this.http.post<HotelRoom>(`${JPA_API_URL}/hotelRoom`,hotelRoom);
     }
@@ -17,5 +20,8 @@ import { HotelRoom } from "../model/hotelRoom";
     }
     updateHotelRooms(hotelRoom:HotelRoom){
       return this.http.put<HotelRoom>(`${JPA_API_URL}/hotelRoom/${hotelRoom.id}`,hotelRoom);
+    }
+    getHotelRoomsByHotel(id){
+      return this.http.get<HotelRoom[]>(`${JPA_API_URL}/hotelRoom/get-by-hotel?hotelId=${id}`);
     }
 }

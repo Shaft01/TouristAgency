@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" translate>Country</h4>
+    <h4 class="modal-title" translate>City</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -10,7 +10,7 @@
             <label >City name</label> 
            <input type="text" name="cityName" class="form-control" [(ngModel)]="city.name" required>
         </fieldset>
-        <fieldset class="form-group">
+        <fieldset class="form-group" *ngIf="country.id == null">
             <label>Country</label>
             <select class="form-control" id="countryId" #countryId="ngModel" [(ngModel)]="city.countryId" name="countryId" required>
                 <option [ngValue]="country.id" *ngFor="let country of countries">{{country.name}}</option>
@@ -18,7 +18,7 @@
         </fieldset>
         <fieldset class="form-group">
           <label>Descritpion</label>
-          <textarea class="form-control" id="description" [(ngModel)]="city.description" rows="2" name="description"></textarea>
+          <textarea class="form-control" id="description" [(ngModel)]="city.description" rows="2" name="description" maxlength="200"></textarea>
         </fieldset>
         <fieldset class="form-group" *ngIf="city.id == undefined">
           <label>Upload image</label>

@@ -52,6 +52,15 @@ public class CityController {
 		
 		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.ACCEPTED);
 	}
+	@GetMapping("{id}")
+	public ResponseEntity<CityDTO> getOneById(@PathVariable Long id){
+		
+		City city= cityService.findById(id);
+		if(city==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(toDTO.convert(city),HttpStatus.OK);
+	}
 	@GetMapping()
 	public ResponseEntity<List<CityDTO>> getAll(){
 		List<City> list= cityService.getAll();

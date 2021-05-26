@@ -17,26 +17,34 @@ export class HotelComponent implements OnInit {
   cities:City[]=[];
   showMessage=false;
   @Input() hotel:Hotel=new Hotel();
+  @Input() city:City=new City();
   constructor(public activeModal: NgbActiveModal,private cityService:CityService,private hotelService:HotelService,private imageService:ImageService) { }
-  imageUpload;
+  imageUpload=null;
   ngOnInit(): void {
     this.cityService.getAllCities().subscribe(response=>{
       this.cities=response;
     });
   }
   saveHotel(){
+    if(this.hotel.cityId== null){
+      this.hotel.cityId = this.city.id;
+    }
     const formData = new FormData();
     formData.append('image',this.imageUpload);
     if(this.hotel.id==undefined){
       this.hotelService.createHotel(this.hotel).subscribe(response=>{
         this.hotelChange.emit(<Hotel>response);
-        return this.imageService.uploadImage(response.id,"City",formData).subscribe(response=>{
-          this.activeModal.close();
-        });
+        if(this.imageUpload!=null){
+          return this.imageService.uploadImage(response.id,"Hotel",formData).subscribe(response=>{
+            //this.activeModal.close();
+          });
+        }
+        this.activeModal.close();
       },
       error=>{
         this.showMessage=true;
       });
+    
    }else{
      this.hotelService.updateHotel(this.hotel).subscribe(response=>{
       this.hotelChange.emit(<Hotel>response);

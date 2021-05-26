@@ -45,5 +45,14 @@ public class HotelServiceImpl implements HotelService{
 		}
 		return null;
 	}
+	@Override
+	public Hotel findById(Long id) {
+		Optional<Hotel> optional= hotelRepo.findById(id);
+		if(optional.isPresent()) {
+			
+			return optional.get();
+		}
+		return null;
+	}
 
 }

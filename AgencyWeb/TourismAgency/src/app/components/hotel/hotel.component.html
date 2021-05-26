@@ -10,7 +10,7 @@
             <label >Hotel name</label> 
            <input type="text" name="hotelName" class="form-control" [(ngModel)]="hotel.name" required>
         </fieldset>
-        <fieldset class="form-group">
+        <fieldset class="form-group" *ngIf="city.id==null">
             <label>City</label>
             <select class="form-control" id="cityId" #countryId="ngModel" [(ngModel)]="hotel.cityId" name="cityId" required>
                 <option [ngValue]="city.id" *ngFor="let city of cities">{{city.name}}</option>
@@ -18,7 +18,7 @@
         </fieldset>
         <fieldset class="form-group">
           <label>Descritpion</label>
-          <textarea class="form-control" id="description" [(ngModel)]="hotel.description" rows="2" name="description"></textarea>
+          <textarea class="form-control" id="description" [(ngModel)]="hotel.description" rows="2" name="description" maxlength="200"></textarea>
         </fieldset>
         <fieldset class="form-group" *ngIf="hotel.id == undefined">
           <label>Upload image</label>

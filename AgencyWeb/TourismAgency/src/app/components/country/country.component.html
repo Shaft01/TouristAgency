@@ -14,7 +14,7 @@
         </fieldset>
         <fieldset class="form-group">
           <label>Descritpion</label>
-          <textarea class="form-control" id="description" [(ngModel)]="country.description" rows="2" name="description"></textarea>
+          <textarea class="form-control" id="description" [(ngModel)]="country.description" rows="2" name="description" maxlength="200"></textarea>
         </fieldset>
     </form>
     <fieldset class="form-group" *ngIf="country.id == undefined">

@@ -28,6 +28,7 @@ public class CityServiceImpl implements CityService {
 				return null;
 			}else {
 				return cityRepo.save(convert);
+				
 			}
 		}
 			
@@ -51,6 +52,16 @@ public class CityServiceImpl implements CityService {
 		Optional<City> optional= cityRepo.findById(id);
 		if(optional.isPresent()) {
 			cityRepo.deleteById(id);
+			
+			return optional.get();
+		}
+		return null;
+	}
+
+	@Override
+	public City findById(Long id) {
+		Optional<City> optional= cityRepo.findById(id);
+		if(optional.isPresent()) {
 			
 			return optional.get();
 		}

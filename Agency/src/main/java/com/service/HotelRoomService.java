@@ -12,4 +12,8 @@ public interface HotelRoomService {
 
 	List<HotelRoom> getAllByHotel(Long id);
 
+	HotelRoom findById(Long id);
+
+	HotelRoom delete(Long id);
+
 }

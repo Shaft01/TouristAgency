@@ -3,10 +3,23 @@
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
+</div>
 <div class="modal-body">
     <form #arrangementForm="ngForm">
-       
+      <fieldset class="form-group">
+        <label translate>Start Date</label>
+          <input  type = "date" #startDate="ngModel" [(ngModel)]="arrangement.startDate" class="form-control" name="startDate" required>
+      </fieldset>
+      <fieldset class="form-group">
+        <label translate>End Date</label>
+          <input  type = "date" #endDate="ngModel" [(ngModel)]="arrangement.endDate" class="form-control" name="endDate" required>
+      </fieldset>
+      <fieldset class="form-group">
+        <label translate>Number of people</label>
+        <select class="form-control" id="number" #number="ngModel" [(ngModel)]="numberOfPeople" name="number" required>
+          <option [ngValue]="count" *ngFor="let count of numbers">{{count}}</option>
+      </select>
+      </fieldset>
     </form>
 </div>
 

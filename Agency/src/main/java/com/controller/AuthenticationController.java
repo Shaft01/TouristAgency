@@ -52,11 +52,11 @@ public class AuthenticationController {
 		try {
 			authentication = userService.authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		} catch (TemporarilyBlockedException e) {
-			return new ResponseEntity<UserTokenState>(HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 		
 		if(authentication == null) {
-			return new ResponseEntity<UserTokenState>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -74,7 +74,7 @@ public class AuthenticationController {
 			}
 		}
 		
-		//String roleName = ((List<Authority>) user.getAuthorities()).get(0).getName();
+		
 		String jwt = tokenUtils.generateToken(user.getUsername(), roleName);
 		int expiresIn = tokenUtils.getExpiredIn();
 

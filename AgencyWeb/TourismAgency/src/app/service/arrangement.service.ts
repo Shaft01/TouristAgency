@@ -1,0 +1,17 @@
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { JPA_API_URL } from "../constants";
+import { Arrangement } from "../model/arrangement";
+
+@Injectable({
+    providedIn: 'root'
+  })
+  export class ArrangementService{
+   
+    
+    constructor(private http:HttpClient){}
+
+    saveArrangement(arrangement){
+        return this.http.post<Arrangement>(`${JPA_API_URL}/arrangement`,arrangement);
+    }
+}

@@ -14,14 +14,14 @@
             </select>
            
         </fieldset>
-        <fieldset class="form-group">
+        <fieldset class="form-group" *ngIf="hotel.id==null">
             <label>Hotel</label>
             <select class="form-control" id="hotelId" #hotelId="ngModel" [(ngModel)]="hotelRoom.hotelId" name="hotelId" required>
                 <option [ngValue]="hotel.id" *ngFor="let hotel of hotels">{{hotel.name}}</option>
             </select>
         </fieldset>
         <fieldset class="form-group"> 
-          <label>Price per day</label>
+          <label>Price per person</label>
             <input type=number step=0.01 name="price" class="form-control" [(ngModel)]="hotelRoom.pricePerPerson" required>
             </fieldset>
         <fieldset class="form-group">

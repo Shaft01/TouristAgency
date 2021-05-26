@@ -9,6 +9,9 @@ import { Hotel } from "../model/hotel";
   export class HotelService{
     constructor(private http:HttpClient){}
 
+    getHotelById(id){
+        return this.http.get<Hotel>(`${JPA_API_URL}/hotel/${id}`);
+    }
     createHotel(hotel:Hotel){
         return this.http.post<Hotel>(`${JPA_API_URL}/hotel`,hotel);
     }

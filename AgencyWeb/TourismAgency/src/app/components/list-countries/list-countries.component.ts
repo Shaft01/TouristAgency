@@ -33,15 +33,17 @@ export class ListCountriesComponent implements OnInit {
     this.countryService.getAllCountries().subscribe(response=>{
       this.countries = response;
       this.countries.forEach(country=>{
-        this.imageService.openImagePath(country.imagePath).subscribe(data=>{
-          const blob = new Blob([data], { type: "image/png" });
-          const url = URL.createObjectURL(blob);  
-          country.image=this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+        if(country.imagePath!=null){
+          this.imageService.openImagePath(country.imagePath).subscribe(data=>{
+            const blob = new Blob([data], { type: "image/png" });
+            const url = URL.createObjectURL(blob);  
+            country.image=this.domSanitizer.bypassSecurityTrustResourceUrl(url);
          
-        },
-        err=>{
-          console.log("GRESKA");
-        });
+          },
+          err=>{
+            console.log("GRESKA");
+         });
+        }
       })
     });
   }

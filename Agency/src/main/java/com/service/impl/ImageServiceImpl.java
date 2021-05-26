@@ -97,7 +97,7 @@ public class ImageServiceImpl implements ImageService {
 			Path paths=Paths.get(filesPath,path);
 			return new InputStreamResource(new FileInputStream(new File(paths.toString())));
 		}catch(FileNotFoundException e) {
-			System.out.println(e.getMessage());
+			
 			return null;
 		}
 	}

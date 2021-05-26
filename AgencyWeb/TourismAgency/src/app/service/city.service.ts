@@ -7,6 +7,9 @@ import { City } from "../model/city";
     providedIn: 'root'
   })
   export class CityService{
+    getCityById(param: any) {
+      return this.http.get<City>(`${JPA_API_URL}/city/${param}`);
+    }
     
     constructor(private http:HttpClient){}
 

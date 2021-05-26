@@ -14,4 +14,6 @@ public interface CityService {
 
 	City delete(Long id);
 
+	City findById(Long id);
+
 }

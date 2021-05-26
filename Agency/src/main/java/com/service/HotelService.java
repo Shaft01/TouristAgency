@@ -14,5 +14,7 @@ public interface HotelService {
 
 	Hotel delete(Long id);
 
+	Hotel findById(Long id);
+
 	
 }

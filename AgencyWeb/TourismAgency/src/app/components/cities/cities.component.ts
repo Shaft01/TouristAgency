@@ -15,16 +15,21 @@ import { ImageService } from 'src/app/service/image.service';
 export class CitiesComponent implements OnInit {
   @Output() cityChange = new EventEmitter<City>();
   @Input() city:City= new City();
+  @Input() country:Country=new Country();
   showMessage=false;
   countries:Country[]=[];
   constructor(public activeModal: NgbActiveModal,private cityService:CityService,private coutryService:CountryService,private imageService:ImageService) { }
-  imageUpload;
+  imageUpload=null;
   ngOnInit(): void {
     this.coutryService.getAllCountries().subscribe(response=>{
       this.countries = response;
     });
+    console.log(this.country);
   }
   saveCity(){
+    if(this.city.countryId== null){
+      this.city.countryId = this.country.id;
+    }
     const formData = new FormData();
     formData.append('image',this.imageUpload);
     console.log(this.city.id);
@@ -32,24 +37,30 @@ export class CitiesComponent implements OnInit {
       console.log("CREATE")
       this.cityService.createCity(this.city).subscribe(response=>{
         this.cityChange.emit(<City>response);
-        return this.imageService.uploadImage(response.id,"City",formData).subscribe(response=>{
+        if(this.imageUpload!=null){
+          
+          return this.imageService.uploadImage(response.id,"City",formData).subscribe(response=>{
           this.activeModal.close();
         });
-        
+        }else{
+          this.activeModal.close();
+        }
       },
       error=>{
         this.showMessage=true;
       })
     }else{
-      console.log("UPDATE")
-      this.cityService.updateCity(this.city).subscribe(response=>{
-        this.cityChange.emit(<City>response);
-        this.activeModal.close();
-      },
-      error=>{
-        this.showMessage=true;
-      })
+      this.update();
     }
+  }
+  update(){
+    this.cityService.updateCity(this.city).subscribe(response=>{
+      this.cityChange.emit(<City>response);
+      this.activeModal.close();
+    },
+    error=>{
+      this.showMessage=true;
+    })
   }
   handleFileInput(event){
     this.imageUpload = event.target.files[0];

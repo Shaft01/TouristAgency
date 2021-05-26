@@ -51,6 +51,16 @@ public class HotelController {
 		
 		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
 	}
+	@GetMapping("{id}")
+	public ResponseEntity<HotelDTO> getOne(@PathVariable Long id){
+		Hotel hotel = hotelService.findById(id);
+		if(hotel == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(toDTO.convert(hotel),
+				HttpStatus.OK);
+	}
+	
 	@DeleteMapping("{id}")
 	public ResponseEntity<HotelDTO> delete(@PathVariable Long id){
 		Hotel deleted = hotelService.delete(id);
