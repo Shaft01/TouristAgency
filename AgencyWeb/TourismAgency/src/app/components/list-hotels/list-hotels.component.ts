@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { City } from 'src/app/model/city';
 import { Hotel } from 'src/app/model/hotel';
+import { BasicAuthenticationService } from 'src/app/service/basic-authentication.service';
 import { CityService } from 'src/app/service/city.service';
 import { HotelService } from 'src/app/service/hotel.service';
 import { ImageService } from 'src/app/service/image.service';
@@ -17,8 +18,10 @@ import { HotelComponent } from '../hotel/hotel.component';
 export class ListHotelsComponent implements OnInit {
   hotels:Hotel[]=[];
   city:City=new City();
+  term:string;
   constructor(private modalService: NgbModal,private hotelService:HotelService,private route:ActivatedRoute,
-    private domSanitizer:DomSanitizer,private imageService:ImageService,private router:Router,private cityService:CityService) { }
+    private domSanitizer:DomSanitizer,private imageService:ImageService,private router:Router,private cityService:CityService,
+    public basicAuthentificationService:BasicAuthenticationService) { }
   param=null;
   ngOnInit(): void {
     this.param = this.route.snapshot.paramMap.get('id');
@@ -41,26 +44,32 @@ export class ListHotelsComponent implements OnInit {
     if(id==null)
       this.hotelService.getAllHotels().subscribe(response=>{
         this.hotels=response;
+        this.loadHotelImages();
       });
       else{
         this.hotelService.getHotelsByCity(id).subscribe(response=>{
           this.hotels=response;
-          this.hotels.forEach(hotel=>{
-            if(hotel.imagePath!=null){
-              this.imageService.openImagePath(hotel.imagePath).subscribe(data=>{
-                const blob = new Blob([data], { type: "image/png" });
-                const url = URL.createObjectURL(blob);  
-                hotel.image=this.domSanitizer.bypassSecurityTrustResourceUrl(url);
-             
-              },
-              err=>{
-                console.log("GRESKA");
-              });
-            }
-          })
-        
+          this.loadHotelImages();
         });
       }
+  }
+  loadHotelImages(){
+    this.hotels.forEach(hotel=>{
+      if(hotel.imagePath!=null){
+        this.imageService.openImagePath(hotel.imagePath).subscribe(data=>{
+          const blob = new Blob([data], { type: "image/png" });
+          const url = URL.createObjectURL(blob);  
+          hotel.image=this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+       
+        },
+        err=>{
+          hotel.image="/assets/images/travelssite1.jpg";
+        });
+      }else{
+        hotel.image="/assets/images/travelssite1.jpg";
+      } 
+    })
+  
   }
   openThis(name,event){
     event.stopPropagation();

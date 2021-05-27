@@ -10,6 +10,10 @@ public interface ArrangementService {
 	Arrangement save(Arrangement arrangement);
 
 	List<Arrangement> findByUser(String username);
+
+	List<Arrangement> findByUserAndHotel(String username, Long id);
+
+	Arrangement delete(Long id);
 	
 
 }

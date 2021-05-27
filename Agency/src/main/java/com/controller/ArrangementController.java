@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,4 +47,22 @@ public class ArrangementController {
 		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
 		
 	}
+	@GetMapping("get-by-hotel-and-user")
+	public ResponseEntity<List<ArrangementDTO>> getByUserAndHotel(@RequestParam("username")String username,
+																  @RequestParam("hotelId")Long id){
+		List<Arrangement> list=arrangementService.findByUserAndHotel(username,id);
+		
+		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
+	}
+	@DeleteMapping("{id}")
+	public ResponseEntity<ArrangementDTO> delete(@PathVariable Long id){
+		Arrangement deleted= arrangementService.delete(id);
+		
+		if(deleted==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(toDTO.convert(deleted),
+				HttpStatus.OK);
+		}
+	
 }

@@ -8,6 +8,7 @@ import { ListHotelsComponent } from './components/list-hotels/list-hotels.compon
 import { ListRoomsComponent } from './components/list-rooms/list-rooms.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { UserInfoPageComponent } from './components/user-info-page/user-info-page.component';
 import { RouteGuardService } from './service/route-guard.service';
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'cities', component:ListCitiesComponent,canActivate:[RouteGuardService]},
   {path: 'hotels', component:ListHotelsComponent, canActivate:[RouteGuardService]},
   {path: 'rooms', component:ListRoomsComponent, canActivate:[RouteGuardService]},
-  {path: 'hotelRooms',component:ListHotelRoomsComponent, canActivate:[RouteGuardService]}
+  {path: 'hotelRooms',component:ListHotelRoomsComponent, canActivate:[RouteGuardService]},
+  {path: 'userProfile',component:UserInfoPageComponent, canActivate:[RouteGuardService]}
 ];
 
 @NgModule({

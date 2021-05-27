@@ -23,6 +23,8 @@ public class WikiController {
 	@GetMapping()
 	public ResponseEntity<Map<String,String>> getWikiInfo(@RequestParam("title") String title){
 		String info= wikiService.getInfo(title);
+		int i=info.indexOf('.', 1300);
+		info=info.substring(0, i+1);
 		Map<String,String> content=new HashMap<>();
 		content.put("content", info);
 		return new ResponseEntity<>(content,HttpStatus.OK);

@@ -7,7 +7,7 @@
             <th>ID</th>
             <th>Hotel name</th>
             <th>Room type</th>
-            <th>price per person</th>
+            <th>price per day</th>
             
         </tr>
     </thead>
@@ -17,7 +17,7 @@
             <td>{{hotelRoom.hotelName}}</td>
             <td>{{hotelRoom.roomType}}</td>
             <td>{{hotelRoom.pricePerPerson}} €</td>
-            <td><button (click)="createArrangement(hotelRoom)">Create arrangement</button></td>
+            <td><div *ngIf="basicAuthentificationService.isUserLoggedIn()"><button type="button" class="btn btn-outline-light" (click)="createArrangement(hotelRoom)">Create arrangement</button></div></td>
         </tr>
     </tbody>
 </table>

@@ -77,7 +77,7 @@ export class BasicAuthenticationService {
   logout(){
     sessionStorage.removeItem(AUTHENTICATED_USER)
     sessionStorage.removeItem(TOKEN)
-    sessionStorage.removeItem(id);
+   
     this.router.navigateByUrl("/login")
 
     this.logoutCallbacks.forEach(callback => {

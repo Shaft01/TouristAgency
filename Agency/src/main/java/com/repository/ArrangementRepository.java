@@ -11,4 +11,7 @@ import com.model.Arrangement;
 public interface ArrangementRepository extends JpaRepository<Arrangement,Long>{
 	@Query("SELECT a FROM Arrangement a WHERE a.user.username LIKE %:username%")
 	List<Arrangement> findByUser(@Param("username")String username);
+
+	@Query("SELECT a FROM Arrangement a WHERE a.hotelRoom.hotel.id =:id AND a.user.username LIKE %:username%")
+	List<Arrangement> findByUserAndHotel(@Param("username")String username,@Param("id") Long id);
 }

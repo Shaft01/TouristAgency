@@ -1,20 +1,24 @@
 <h2>{{country.name}}</h2>
-<p>{{countryInfo}}</p>
-<div class="toolbar">
+<p>{{countryInfo | slice:0:1500}}</p>
+<div class="toolbar" *ngIf="basicAuthentificationService.hasRole()">
     <button (click)="createCity()" class="btn btn-outline-toolbar">Create city</button>
 </div>
-
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div>
 <div class="container mt-3">
     <div class="row">
         <div class="card-deck" >
-            <div class="card" style="width: 18rem;" *ngFor=" let city of cities" (click)="openThis(city.id,$event)">
+            <div class="card" style="width: 18rem;" *ngFor=" let city of cities| nameFilter:term" (click)="openThis(city.id,$event)">
                 
                 <img [src]=city.image class="card-img-top" alt="..."  width="150"  height="200">
                 <div class="card-body">
                   <h5 class="card-title">{{city.name}}</h5>
                   <p class="card-text">{{city.description | slice:0:50}}</p>
-                  <button class="btn btn-primary" (click)="edit(city,$event)">Edit</button>&nbsp;
-                  <button class="btn btn-primary" (click)="delete(city,$event)">Delete</button>
+                  <div *ngIf="basicAuthentificationService.hasRole()">
+                    <button class="btn btn-primary" (click)="edit(city,$event)">Edit</button>&nbsp;
+                    <button class="btn btn-primary" (click)="delete(city,$event)">Delete</button>
+                  </div>
                 </div>
               </div>
             

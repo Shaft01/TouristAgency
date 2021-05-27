@@ -19,9 +19,15 @@
         <li class="nav-item" >
           <a class="nav-link" routerLink="/hotels" routerLinkActive="active current" [routerLinkActiveOptions]="{ exact: true }">Hotels</a>
         </li> 
-        <li class="nav-item" >
+        <li class="nav-item" *ngIf="basicAuthentificationService.hasRole()">
           <a class=nav-link routerLink="/rooms" routerLinkActive="active current" [routerLinkActiveOptions]="{exact: true}">Rooms</a>
         </li>
+        <li class="nav-item">
+          <a class=nav-link routerLink="/userProfile" routerLinkActive="active current" [routerLinkActiveOptions]="{exact: true}">Profile</a>
+        </li>
+        
       </ul>
+      <li class="nav-item" *ngIf="basicAuthentificationService.isUserLoggedIn()">
+        <a class=nav-link (click)="logout()" routerLinkActive="active current" [routerLinkActiveOptions]="{exact: true}">Logout</a></li>
     </div>
   </nav>

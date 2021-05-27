@@ -27,3 +27,6 @@
     <button type="button" [disabled] = "arrangementForm.invalid" (click)="saveArrangement()" id="closeModal" class="btn btn-primary" translate>Save</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" translate>Close</button>
 </div>
+<div *ngIf="message">
+  <p class="alert alert-danger">Enter correct dates</p>
+</div>

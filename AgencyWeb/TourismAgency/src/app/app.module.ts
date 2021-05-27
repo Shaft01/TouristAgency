@@ -22,6 +22,10 @@ import { ListRoomsComponent } from './components/list-rooms/list-rooms.component
 import { HotelRoomComponent } from './components/hotel-room/hotel-room.component';
 import { ListHotelRoomsComponent } from './components/list-hotel-rooms/list-hotel-rooms.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
+import { UserInfoPageComponent } from './components/user-info-page/user-info-page.component';
+import { ListArrangementsComponent } from './components/list-arrangements/list-arrangements.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NameFilterPipe } from './filters/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     ListRoomsComponent,
     HotelRoomComponent,
     ListHotelRoomsComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    UserInfoPageComponent,
+    ListArrangementsComponent,
+    NameFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -48,7 +55,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     FormsModule,
     HttpClientModule,
     NgbModule,
-    
+    Ng2SearchPipeModule,
     BrowserAnimationsModule,
     
   ],

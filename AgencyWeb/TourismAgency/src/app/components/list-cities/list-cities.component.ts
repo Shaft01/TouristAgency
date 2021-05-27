@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { City } from 'src/app/model/city';
 import { Country } from 'src/app/model/country';
+import { BasicAuthenticationService } from 'src/app/service/basic-authentication.service';
 import { CityService } from 'src/app/service/city.service';
 import { CountryService } from 'src/app/service/country.service';
 import { ImageService } from 'src/app/service/image.service';
@@ -20,9 +21,11 @@ export class ListCitiesComponent implements OnInit {
   param=null;
   country:Country=new Country();
   countryInfo:string="";
+  term:string;
   constructor(private cityService:CityService,private route:ActivatedRoute,
     private router:Router,private modalService: NgbModal,private imageService:ImageService,
-    private domSanitizer:DomSanitizer,private countryService:CountryService,private wikiService:WikiService) { }
+    private domSanitizer:DomSanitizer,private countryService:CountryService,private wikiService:WikiService,
+    public basicAuthentificationService:BasicAuthenticationService) { }
 
   ngOnInit(): void {
     this.param = this.route.snapshot.paramMap.get('id');
@@ -49,25 +52,45 @@ export class ListCitiesComponent implements OnInit {
     if(id==null){
       this.cityService.getAllCities().subscribe(response=>{
        this.cities = response;
+       this.loadCityImages();
+       
      });
     }else{
       this.cityService.getCitiesByCountry(id).subscribe(response=>{
         this.cities=response;
-        this.cities.forEach(city=>{
-          if(city.imagePath!=null){
-            this.imageService.openImagePath(city.imagePath).subscribe(data=>{
-              const blob = new Blob([data], { type: "image/png" });
-              const url = URL.createObjectURL(blob);  
-              city.image=this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+        this.loadCityImages();
+        // this.cities.forEach(city=>{
+        //   if(city.imagePath!=null){
+        //     this.imageService.openImagePath(city.imagePath).subscribe(data=>{
+        //       const blob = new Blob([data], { type: "image/png" });
+        //       const url = URL.createObjectURL(blob);  
+        //       city.image=this.domSanitizer.bypassSecurityTrustResourceUrl(url);
            
-            },
-            err=>{
-              console.log("GRESKA");
-            });
-          } 
-        })
+        //     },
+        //     err=>{
+        //       console.log("GRESKA");
+        //     });
+        //   } 
+        // })
       });
     }
+  }
+  loadCityImages(){
+    this.cities.forEach(city=>{
+      if(city.imagePath!=null){
+        this.imageService.openImagePath(city.imagePath).subscribe(data=>{
+          const blob = new Blob([data], { type: "image/png" });
+          const url = URL.createObjectURL(blob);  
+          city.image=this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+       
+        },
+        err=>{
+          city.image="/assets/images/travelssite1.jpg";
+        });
+      }else{
+        city.image="/assets/images/travelssite1.jpg";
+      } 
+    });
   }
   openThis(name,event){
     event.stopPropagation();

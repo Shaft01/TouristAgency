@@ -23,7 +23,8 @@ export class ListHotelRoomsComponent implements OnInit {
   images:Image[]=[];
   param=null;
   constructor( private hotelRoomService:HotelRoomService,private imageService:ImageService,
-     private modalService: NgbModal,  private domSanitizer: DomSanitizer,private route:ActivatedRoute,private hotelService:HotelService) { }
+     private modalService: NgbModal,  private domSanitizer: DomSanitizer,private route:ActivatedRoute,private hotelService:HotelService,
+     ) { }
 
   ngOnInit(): void {
     this.param = this.route.snapshot.paramMap.get('id');

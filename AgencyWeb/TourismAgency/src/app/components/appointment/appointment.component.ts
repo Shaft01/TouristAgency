@@ -21,6 +21,7 @@ export class AppointmentComponent implements OnInit {
   numbers:number[]=[1,2,3,4];
   @Input() hotelRoom:HotelRoom;
   user:any;
+  message=false;
   ngOnInit(): void {
   
     console.log(this.authentification.getAuthenticatedUser());
@@ -32,13 +33,20 @@ export class AppointmentComponent implements OnInit {
   }
 
   saveArrangement(){
-    this.arrangement.hotelRoomId=this.hotelRoom.id;
+    var startDate=new Date(this.arrangement.startDate);
+    var endDate= new Date(this.arrangement.endDate);
+    if(this.arrangement.startDate>this.arrangement.endDate ||(startDate.getTime()<new Date().getTime())){
+      this.message=true;
+      return;
+    }
+    let timeInMilisec=endDate.getTime()-startDate.getTime();
+    let daysBetween = Math.ceil(timeInMilisec / (1000 * 60 * 60 * 24));
     
-    console.log(this.arrangement.startDate);
+    this.arrangement.hotelRoomId=this.hotelRoom.id;
     
     this.arrangement.userId=this.user.id;
     
-    this.arrangement.price=this.hotelRoom.pricePerPerson * this.numberOfPeople;
+    this.arrangement.price=this.hotelRoom.pricePerPerson * daysBetween;
     this.arrangementService.saveArrangement(this.arrangement).subscribe(respose=>{
       console.log(respose);
       this.activeModal.close();
