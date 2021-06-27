@@ -5,12 +5,12 @@ import com.model.Image;
 public class ImageDTO {
 	private Long id;
 	private String path;
-	private Long hotelRoomId;
+	private Long hotelId;
 	public ImageDTO() {}
 	public ImageDTO(Image source) {
 		this.id = source.getId();
 		this.path = source.getPath();
-		this.hotelRoomId = source.getHotelRoom().getId();
+		this.hotelId = source.getHotel().getId();
 	}
 	public Long getId() {
 		return id;
@@ -24,10 +24,10 @@ public class ImageDTO {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	public Long getHotelRoomId() {
-		return hotelRoomId;
+	public Long getHotelId() {
+		return hotelId;
 	}
-	public void setHotelRoomId(Long hotelRoomId) {
-		this.hotelRoomId = hotelRoomId;
+	public void setHotelId(Long hotelId) {
+		this.hotelId = hotelId;
 	}
 }

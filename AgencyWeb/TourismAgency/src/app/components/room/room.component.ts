@@ -9,7 +9,7 @@ import { RoomService } from 'src/app/service/room.service';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
-  @Output() countryChange = new EventEmitter<Room>();
+  @Output() roomChange = new EventEmitter<Room>();
   room: Room=new Room();
   constructor(public activeModal: NgbActiveModal,
     private roomService:RoomService) { }
@@ -20,7 +20,7 @@ export class RoomComponent implements OnInit {
 
   saveRoom(){
     this.roomService.createRoom(this.room).subscribe(response=>{
-      this.countryChange.emit(<Room>response);
+      this.roomChange.emit(<Room>response);
       this.activeModal.close();
     });
 

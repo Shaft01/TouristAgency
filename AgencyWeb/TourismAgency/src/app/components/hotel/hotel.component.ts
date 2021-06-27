@@ -36,7 +36,7 @@ export class HotelComponent implements OnInit {
         this.hotelChange.emit(<Hotel>response);
         if(this.imageUpload!=null){
           return this.imageService.uploadImage(response.id,"Hotel",formData).subscribe(response=>{
-            //this.activeModal.close();
+            this.activeModal.close();
           });
         }
         this.activeModal.close();

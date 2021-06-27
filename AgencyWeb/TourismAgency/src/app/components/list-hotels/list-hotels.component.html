@@ -1,10 +1,13 @@
 <div>
     <h2>{{city.name}}</h2>
-    <p>{{city.description}}</p>
+    <p *ngIf="!cityInfo">{{city.description}}</p>
+    <p *ngIf="cityInfo">{{cityInfo | slice:0:1500}}</p>
 </div>
 <div class="toolbar" *ngIf="basicAuthentificationService.hasRole()">
-    <button (click)="createHotel()" class="btn btn-outline-toolbar">Create hotel</button>
+    <button (click)="createHotel()" class="btn btn-outline-light">Create hotel</button>
+    
 </div>
+<br>
 <div class="form-group">
     <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
 </div>
@@ -16,7 +19,7 @@
                 <img [src]="hotel.image" class="card-img-top" alt="..."  width="150" height="200">
                 <div class="card-body">
                   <h5 class="card-title">{{hotel.name}}</h5>
-                  <p class="card-text">{{hotel.description}}</p>
+                  <p class="card-text" style="color:black;">{{hotel.description}}</p>
                   <div *ngIf="basicAuthentificationService.hasRole()">
                     <button class="btn btn-primary" (click)="edit(hotel,$event)">Edit</button>&nbsp;
                     <button class="btn btn-primary" (click)="delete(hotel,$event)">Delete</button>

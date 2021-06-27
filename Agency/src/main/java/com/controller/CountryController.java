@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,12 @@ public class CountryController {
 		
 		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
 		
+	}
+	@GetMapping("get-random")
+	public ResponseEntity<List<CountryDTO>> getRandom(){
+		List<Country> list=countryService.getRandom();
+		
+		return new ResponseEntity<>(toDTO.convert(list),HttpStatus.OK);
 	}
 	@GetMapping()
 	public ResponseEntity<List<CountryDTO>> getAll(){

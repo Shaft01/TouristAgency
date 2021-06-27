@@ -19,6 +19,8 @@ public interface CountryService {
 
 	Flux<Country> getAllRemote();
 
+	List<Country> getRandom();
+
 	
 
 }

@@ -104,9 +104,12 @@
 		 <plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>3.5.5</version>
+				<version>4.3.1</version>
 				<configuration>
 					<propertyFile>src/main/resources/liquibase/config/liquibase-development.properties</propertyFile>
+					 <outputChangeLogFile>src/main/resources/liquibase/liquibase-new-changeLog.xml</outputChangeLogFile>
+                        <changeLogFile>src/main/resources/liquibase/liquibase-masterChangeLog.xml</changeLogFile>
+                        <diffChangeLogFile>src/main/resources/liquibase/liquibase-changeLog.xml</diffChangeLogFile>
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 				</configuration>
 				<dependencies>

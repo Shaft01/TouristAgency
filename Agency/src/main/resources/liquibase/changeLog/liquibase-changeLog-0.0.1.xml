@@ -102,6 +102,20 @@
             </column>
         </createTable>
     </changeSet>
+      <changeSet author="lazar (generated)" id="1622544457611-1">
+        <addColumn tableName="image">
+            <column name="hotel_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lazar (generated)" id="1622544457611-2">
+        <addForeignKeyConstraint baseColumnNames="hotel_id" baseTableName="image" constraintName="FKnmctq4w6r7lkp880d4utoop2l" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="hotel"/>
+    </changeSet>
+    <changeSet author="lazar (generated)" id="1622544457611-3">
+        <dropForeignKeyConstraint baseTableName="image" constraintName="FKsgpb3i9pumm03yrv4itopkj3k"/>
+    </changeSet>
+    <changeSet author="lazar (generated)" id="1622544457611-4">
+        <dropColumn columnName="hotel_room_id" tableName="image"/>
+    </changeSet>
     <changeSet author="lazar (generated)" id="1621583499601-11">
         <addUniqueConstraint columnNames="type" constraintName="UKc20fo9ro0p1o566p6h1r728pv" tableName="room"/>
     </changeSet>

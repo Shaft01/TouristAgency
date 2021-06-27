@@ -12,6 +12,7 @@ public class ArrangementDTO {
 	private Long hotelRoomId;
 	private String details;
 	private Double price;
+	private String roomType;
 	
 	public ArrangementDTO(Arrangement source) {
 		this.id = source.getId();
@@ -21,6 +22,7 @@ public class ArrangementDTO {
 		this.price = source.getPrice();
 		this.userId = source.getUser().getId();
 		this.details = source.getDetails();
+		this.setRoomType(source.getHotelRoom().getRoom().getType());
 	}
 	public ArrangementDTO() {
 		
@@ -66,5 +68,11 @@ public class ArrangementDTO {
 	}
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	public String getRoomType() {
+		return roomType;
+	}
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 }

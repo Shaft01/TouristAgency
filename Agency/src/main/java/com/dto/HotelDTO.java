@@ -9,6 +9,7 @@ public class HotelDTO {
 	private String cityName;
 	private String description;
 	private String imagePath;
+	
 	public HotelDTO() {
 		
 	}

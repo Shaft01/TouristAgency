@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/app/model/country';
 import { CountryService } from 'src/app/service/country.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from '../login/login.component';
 import { CountryComponent } from '../country/country.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageService } from 'src/app/service/image.service';
 import { BasicAuthenticationService } from 'src/app/service/basic-authentication.service';
@@ -57,8 +56,6 @@ export class ListCountriesComponent implements OnInit {
   }
   openThis(name,event){
     event.stopPropagation();
-    //this.router.navigateByUrl("/cities?id="+name);
-   
     this.router.navigate(['/cities', {id:name}]);
     
   }

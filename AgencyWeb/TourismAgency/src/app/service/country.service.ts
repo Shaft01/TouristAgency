@@ -28,6 +28,9 @@ import { Country } from "../model/country";
     deleteCountry(id){
         return this.http.delete<Country>(`${JPA_API_URL}/country/${id}`);
     }
+    getRandomCountries(){
+        return this.http.get<Country[]>(`${JPA_API_URL}/country/get-random`);
+    }
     
 }
   

@@ -1,13 +1,15 @@
 package com.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -70,6 +72,18 @@ public class CountryServiceImpl implements CountryService{
 	public Flux<Country> getAllRemote() {
 		return  webClient.get().uri("/api/countries").retrieve()
 		        .bodyToFlux(Country.class);
+	}
+	@Override
+	public List<Country> getRandom() {
+		Long count=countryRepo.count()/3;
+		int idx = (int)(Math.random() * count);
+		
+		Page<Country>page=countryRepo.findAll(PageRequest.of(idx, 3));
+		List<Country> countries=new ArrayList<>();
+		if(page.hasContent()) {
+			countries=page.getContent();
+		}
+		return countries;
 	}
 	
 

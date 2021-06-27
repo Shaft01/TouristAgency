@@ -31,7 +31,7 @@ public class WikiServiceImpl implements WikiService{
 				json=new JSONObject(s);
 				
 				 resenje= json.get("extract").toString().replaceAll("<[^>]*>", "").trim();
-
+				 
 			
 			} catch (JSONException e) {
 				

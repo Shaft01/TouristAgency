@@ -8,6 +8,6 @@ import com.model.Image;
 
 public interface ImageRepository extends JpaRepository<Image, Long>{
 
-	List<Image> findByHotelRoomId(Long id);
+	List<Image> findByHotelId(Long id);
 
 }

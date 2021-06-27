@@ -26,6 +26,8 @@ import { UserInfoPageComponent } from './components/user-info-page/user-info-pag
 import { ListArrangementsComponent } from './components/list-arrangements/list-arrangements.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NameFilterPipe } from './filters/filter.pipe';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { UploadGalleryComponent } from './components/upload-gallery/upload-gallery.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { NameFilterPipe } from './filters/filter.pipe';
     AppointmentComponent,
     UserInfoPageComponent,
     ListArrangementsComponent,
-    NameFilterPipe
+    NameFilterPipe,
+    UploadGalleryComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { NameFilterPipe } from './filters/filter.pipe';
     NgbModule,
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
+    NgImageSliderModule,
     
   ],
   providers: [{

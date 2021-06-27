@@ -23,3 +23,5 @@ mysql
 
 *******************
 docker run --detach --name=mysql-container --env="MYSQL_ROOT_PASSWORD=root" --publish 3306:3306 --volume=/root/docker/mysql-container/conf.d:/etc/mysql/conf.d --volume=/storage/docker/mysql-data:/var/lib/mysql mysql
+
+INSERT INTO `application_db`.`user` (`id`, `birth_date`, `first_name`, `last_name`, `password`, `username`) VALUES ('1', '2003-01-10', 'Radnik', 'Radnik', '$12$BmsSUGDPlcsS88dfjU5hce/8./QQ/JAAtQlDDROm0uU0Ekrpu.rTG', 'radnik@mail.com');

@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    ports:
+           - "3306:3306"
+    environment:
+           - MYSQL_ROOT_PASSWORD=root
+           - MYSQL_USER=root
+           - MYSQL_DATABASE=application_db
+           - MYSQL_PASSWORD=root
+           - MYSQL_ROOT_HOST=%
+    volumes:
+           - ./my-datavolume:/var/lib/mysql
+   
+    restart: always
+
+  backendserver:
+    build: ./Agency/
+    ports:
+           - "8080:8080"
+    environment:
+           - DB_ADDRESS=host.docker.internal
+           - DATABASE_USER=root
+           - DATABASE_PASSWORD=root
+           - DATABASE_NAME=application_db
+           - DATABASE_PORT=3306
+           - DATABASE_URL=jdbc:mysql://localhost:3306/application_db?createDatabaseIfNotExist=true&useSSL=false
+    links:
+           - "db"
+    depends_on:
+           - "db"
+    restart: always
+
+
+  wiki:
+    build: ./Wiki/
+    ports:
+           - "8082:8082"
+    links:
+           - "backendserver"
+    depends_on:
+           - "backendserver"
+    restart: always
+
+
+  countries:
+    build: ./Countries/
+    ports:
+           - "8081:8081"
+    links:
+           - "backendserver"
+    depends_on:
+           - "backendserver"
+    restart: always
+
+
+  frontend:
+    build: ./AgencyWeb/TourismAgency/
+    links:
+           - "backendserver"
+    depends_on:
+           - "backendserver"
+    ports:
+           - "80:80"
+
+      

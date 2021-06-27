@@ -6,5 +6,6 @@
     <input type = "text" name="username" [(ngModel)]="username" placeholder="Email">
     <input type = "password" name="password" [(ngModel)]="password" placeholder="Password">
 
-    <button class="submit" (click)=handleJWTAuthLogin() translate>Login</button>
+    <button class="submit" (click)=handleJWTAuthLogin() >Login</button>
+    <button class="submit" routerLink="/sign-up" >Register</button>
 </form>

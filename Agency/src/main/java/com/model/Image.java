@@ -20,7 +20,7 @@ public class Image {
 	private String path;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	private HotelRoom hotelRoom;
+	private Hotel hotel;
 	
 	public Long getId() {
 		return id;
@@ -38,12 +38,12 @@ public class Image {
 		this.path = path;
 	}
 
-	public HotelRoom getHotelRoom() {
-		return hotelRoom;
+	public Hotel getHotel() {
+		return hotel;
 	}
 
-	public void setHotelRoom(HotelRoom hotelRoom) {
-		this.hotelRoom = hotelRoom;
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
 
 }

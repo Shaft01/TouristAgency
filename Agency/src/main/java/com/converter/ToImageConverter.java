@@ -7,22 +7,22 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.dto.ImageDTO;
-import com.model.HotelRoom;
+import com.model.Hotel;
 import com.model.Image;
-import com.repository.HotelRoomRepository;
+import com.repository.HotelRepository;
 @Component
 public class ToImageConverter implements Converter<ImageDTO,Image> {
 	@Autowired
-	HotelRoomRepository hotelRoomRepo;
+	HotelRepository hotelRepo;
 	@Override
 	public Image convert(ImageDTO source) {
 		Image image=new Image();
 		image.setId(source.getId());
 		image.setPath(source.getPath());
-		if(source.getHotelRoomId()!=null) {
-			Optional<HotelRoom> optional=hotelRoomRepo.findById(source.getHotelRoomId());
+		if(source.getHotelId()!=null) {
+			Optional<Hotel> optional=hotelRepo.findById(source.getHotelId());
 			if(optional.isPresent())
-				image.setHotelRoom(optional.get());
+				image.setHotel(optional.get());
 		}
 		return image;
 	}

@@ -38,7 +38,7 @@ public class ImageController {
 			e.printStackTrace();
 		}
 	}
-	@GetMapping("get-images-by-room/{id}")
+	@GetMapping("get-images-by-hotel/{id}")
 	public ResponseEntity<List<ImageDTO>> getImagesByRoom(@PathVariable Long id){
 		List<Image> images= imageService.getImagesByRoom(id);
 		return new ResponseEntity<>(toDTO.convert(images),HttpStatus.OK);

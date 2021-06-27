@@ -8,5 +8,6 @@ COPY . /app
 RUN npm run build --prod
 
 FROM nginx:1.17.1-alpine
-
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-step /app/dist/TourismAgency /usr/share/nginx/html
+

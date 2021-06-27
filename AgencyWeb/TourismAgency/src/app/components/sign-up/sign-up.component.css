@@ -1,8 +1,8 @@
 
-
-    HTML CSS 
-
-    Result 
+:host {
+    display: block;
+    padding: 3rem 3rem 0 3rem;
+  }
 
 body{
     margin: 0;
@@ -23,7 +23,7 @@ body{
     color: white;
     font-weight: 500;
 }
-.Box input[type = "text"],.Box input[ type = "Password"]{
+.Box input[type = "text"],.Box input[ type = "Password"],.Box input[type="date"]{
     border: 0;
     background: none;
     display: block;
@@ -40,7 +40,7 @@ body{
 label {
     color:white;
 }
-.Box input[type = "text"]:focus,.Box input[ type = "Password"]:focus{
+.Box input[type = "text"]:focus,.Box input[ type = "Password"]:focus.Box,input[type="date"]:focus{
     width: 280px;
     border-color: #47bac1;
 }

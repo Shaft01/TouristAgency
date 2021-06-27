@@ -6,4 +6,5 @@ export class Arrangement{
     public hotelRoomId:number;
     public details:string;
     public price:number;
+    public roomType:string;
 }

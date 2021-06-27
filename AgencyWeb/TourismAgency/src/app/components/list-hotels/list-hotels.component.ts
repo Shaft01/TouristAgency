@@ -8,6 +8,7 @@ import { BasicAuthenticationService } from 'src/app/service/basic-authentication
 import { CityService } from 'src/app/service/city.service';
 import { HotelService } from 'src/app/service/hotel.service';
 import { ImageService } from 'src/app/service/image.service';
+import { WikiService } from 'src/app/service/wiki.service';
 import { HotelComponent } from '../hotel/hotel.component';
 
 @Component({
@@ -19,15 +20,19 @@ export class ListHotelsComponent implements OnInit {
   hotels:Hotel[]=[];
   city:City=new City();
   term:string;
+  cityInfo:string=null;
   constructor(private modalService: NgbModal,private hotelService:HotelService,private route:ActivatedRoute,
     private domSanitizer:DomSanitizer,private imageService:ImageService,private router:Router,private cityService:CityService,
-    public basicAuthentificationService:BasicAuthenticationService) { }
+    public basicAuthentificationService:BasicAuthenticationService,private wikiService:WikiService) { }
   param=null;
   ngOnInit(): void {
     this.param = this.route.snapshot.paramMap.get('id');
     if(this.param!=null){
       this.cityService.getCityById(this.param).subscribe(reponse=>{
         this.city=reponse;
+        return this.wikiService.getInformation(this.city.name).subscribe(data=>{
+          this.cityInfo=data["content"];
+        })
       })
     }
     this.loadHotels(this.param);

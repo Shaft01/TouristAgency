@@ -2,3 +2,14 @@
     display: block;
     padding: 3rem 3rem 0 3rem;
   }
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+  }
+  .carousel-inner{
+    text-align: center;
+  }
+  button,h2,p{
+    color:white;
+  }

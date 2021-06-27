@@ -20,7 +20,7 @@ export class ListRoomsComponent implements OnInit {
 
   createRoom(){
     const modalRef =this.modalService.open(RoomComponent);
-    modalRef.componentInstance.cityChange.subscribe(response=>{
+    modalRef.componentInstance.roomChange.subscribe(response=>{
       this.loadRooms();
     });
   }

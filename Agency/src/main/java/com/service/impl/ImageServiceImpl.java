@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.model.City;
 import com.model.Country;
+import com.model.Hotel;
 import com.model.HotelRoom;
 import com.model.Image;
 import com.repository.CityRepository;
@@ -53,19 +54,29 @@ public class ImageServiceImpl implements ImageService {
 		}
 		else if(type.equals("City")) {
 			saveCityImage(name,id);
-		}else if(type.equals("HotelRoom")) {
-			saveHotelRoomImage(name,id);
+		}else if(type.equals("Image")) {
+			saveHotelImage(name,id);
+		}else if(type.equals("Hotel")) {
+			saveHotelPathImage(name,id);
 		}
 		
 		return saveImage(image,name);
 		
 	}
-	private void saveHotelRoomImage(String name,Long id) {
+	private void saveHotelPathImage(String name,Long id) {
+		Optional<Hotel> hotel= hotelRepo.findById(id);
+		if(hotel.isPresent()) {
+			Hotel h=hotel.get();
+			h.setImagePath(name);
+			hotelRepo.save(h);
+		}
+	}
+	private void saveHotelImage(String name,Long id) {
 		Image newImage=new Image();
 		
 		newImage.setPath(name);
-		Optional<HotelRoom> optional=hotelRoomRepo.findById(id);
-		newImage.setHotelRoom(optional.isPresent()?  optional.get(): null);
+		Optional<Hotel> optional=hotelRepo.findById(id);
+		newImage.setHotel(optional.isPresent()?  optional.get(): null);
 		imageRepo.save(newImage);
 	}
 	private void saveCountryImage(String name,Long id) {
@@ -88,7 +99,7 @@ public class ImageServiceImpl implements ImageService {
 	@Override
 	public List<Image> getImagesByRoom(Long id) {
 		
-		return imageRepo.findByHotelRoomId(id);
+		return imageRepo.findByHotelId(id);
 	}
 	@Override
 	public InputStreamResource openImagePath(String path) {

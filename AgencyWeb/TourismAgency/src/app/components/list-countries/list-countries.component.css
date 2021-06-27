@@ -9,6 +9,9 @@
   .card-deck>*{
     box-sizing: border-box;
   }
+  button{
+    color:white;
+  }
   /* .card-deck > *:not(:last-child) {
     margin-right: 32px;
   } */

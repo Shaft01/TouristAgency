@@ -15,12 +15,12 @@ const routes: Routes = [
   {path: '*',component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'sign-up', component:SignUpComponent},
-  {path: 'home', component: HomeScreenComponent,canActivate:[RouteGuardService]},
-  {path: 'countries',component:ListCountriesComponent,canActivate:[RouteGuardService]},
-  {path: 'cities', component:ListCitiesComponent,canActivate:[RouteGuardService]},
-  {path: 'hotels', component:ListHotelsComponent, canActivate:[RouteGuardService]},
+  {path: 'home', component: HomeScreenComponent,},
+  {path: 'countries',component:ListCountriesComponent,},
+  {path: 'cities', component:ListCitiesComponent,},
+  {path: 'hotels', component:ListHotelsComponent, },
   {path: 'rooms', component:ListRoomsComponent, canActivate:[RouteGuardService]},
-  {path: 'hotelRooms',component:ListHotelRoomsComponent, canActivate:[RouteGuardService]},
+  {path: 'hotelRooms',component:ListHotelRoomsComponent, },
   {path: 'userProfile',component:UserInfoPageComponent, canActivate:[RouteGuardService]}
 ];
 

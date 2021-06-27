@@ -27,7 +27,8 @@ public class Hotel {
 	private String imagePath;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private City city;
-	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "hotel")
+	private List<Image> images;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "hotel")
 	private List<HotelRoom> hotelRooms;
 	
@@ -74,5 +75,11 @@ public class Hotel {
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	public List<Image> getImages() {
+		return images;
+	}
+	public void setImages(List<Image> images) {
+		this.images = images;
 	}
 }

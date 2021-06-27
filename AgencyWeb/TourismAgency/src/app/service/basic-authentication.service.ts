@@ -73,6 +73,13 @@ export class BasicAuthenticationService {
      } 
 
   }
+  isUserRole(){
+  if(this.getAuthenticatedRole()==="ROLE_USER"){
+    return true;
+  }else{
+    return false;
+  }
+}
 
   logout(){
     sessionStorage.removeItem(AUTHENTICATED_USER)

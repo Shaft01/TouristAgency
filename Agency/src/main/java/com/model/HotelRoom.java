@@ -25,8 +25,7 @@ public class HotelRoom {
 	private Hotel hotel;
 	@Column()
 	private Double pricePerPerson;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "hotelRoom")
-	private List<Image> images;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "hotelRoom")
 	private List<Arrangement> arrangements;
@@ -60,13 +59,6 @@ public class HotelRoom {
 		this.pricePerPerson = pricePerPerson;
 	}
 
-	public List<Image> getImages() {
-		return images;
-	}
-
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
 
 	public List<Arrangement> getArrangement() {
 		return arrangements;

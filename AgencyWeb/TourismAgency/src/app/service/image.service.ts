@@ -17,8 +17,8 @@ import { Image } from "../model/image";
       headers.append("Accept", "application/json");
       return this.http.post<Image>(`${JPA_API_URL}/image/${hotelRoomId}?type=${type}`,image,{ headers:headers}); 
     }
-    getImageByHotelRoom(id){
-      return this.http.get<Image[]>(`${JPA_API_URL}/image/get-images-by-room/${id}`);
+    getImageByHotel(id){
+      return this.http.get<Image[]>(`${JPA_API_URL}/image/get-images-by-hotel/${id}`);
     }
     openImage(id){
       return this.http.get<any>(`${JPA_API_URL}/image/${id}`,{ responseType: 'blob' as 'json' });

@@ -38,15 +38,15 @@ export class HotelRoomComponent implements OnInit {
     if(this.hotelRoom.hotelId==null){
       this.hotelRoom.hotelId=this.hotel.id;
     }
-    const formData = new FormData();
-    formData.append('image',this.imageUpload);
+    // const formData = new FormData();
+    // formData.append('image',this.imageUpload);
     this.hotelRoomService.saveHotelRoom(this.hotelRoom).subscribe(response=>{
       this.hotelRoomChange.emit(<HotelRoom>response);
-      if(this.imageUpload!=null){
-        return this.imageService.uploadImage(response.id,this.type,formData).subscribe(response=>{
+      // if(this.imageUpload!=null){
+      //   return this.imageService.uploadImage(response.id,this.type,formData).subscribe(response=>{
         
-      });
-    }
+      // });
+   // }
     this.activeModal.close();
     });
   }

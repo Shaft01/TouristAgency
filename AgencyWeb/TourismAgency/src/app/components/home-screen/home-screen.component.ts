@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Country } from 'src/app/model/country';
-import { HotelRoom } from 'src/app/model/hotelRoom';
 import { CountryService } from 'src/app/service/country.service';
-import { HotelRoomService } from 'src/app/service/hotel-room.service';
 import { ImageService } from 'src/app/service/image.service';
 
 @Component({
@@ -13,12 +12,12 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class HomeScreenComponent implements OnInit {
 
-  constructor(private countryService:CountryService,private imageService:ImageService,private domSanitizer:DomSanitizer) { }
+  constructor(private countryService:CountryService,private imageService:ImageService,private domSanitizer:DomSanitizer,private router:Router) { }
   countries:Country[]=[];
   ngOnInit(): void {
-    this.countryService.getAllCountries().subscribe(response=>{
+    this.countryService.getRandomCountries().subscribe(response=>{
       this.countries=response;
-     
+     console.log(response);
       this.countries.forEach(country=>{
         this.imageService.openImagePath(country.imagePath).subscribe(data=>{
           const blob = new Blob([data], { type: "image/png" });
@@ -27,10 +26,14 @@ export class HomeScreenComponent implements OnInit {
          
         },
         err=>{
-          console.log("GRESKA");
+          country.image="/assets/images/travelssite1.jpg";
+         
         });
       })
     });
+  }
+  openThis(countryId){
+    this.router.navigate(['/cities', {id:countryId}]);
   }
 
 }

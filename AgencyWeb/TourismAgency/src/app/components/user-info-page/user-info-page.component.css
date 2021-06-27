@@ -2,3 +2,6 @@
     display: block;
     padding: 3rem 3rem 0 3rem;
   }
+  button,h2,p,h4{
+    color:white;
+  }

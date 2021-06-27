@@ -29,7 +29,7 @@ export class ListCitiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.param = this.route.snapshot.paramMap.get('id');
-    console.log(this.param);
+   
     if(this.param!=null){
       this.countryService.getCountryById(this.param).subscribe(response=>{
         this.country=response;
